@@ -49,7 +49,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           <Padding_Layout>
             <Subtitle_Container title="Descripción del Cuento"/>
             <TextArea_Input props={{
-              ref:desc
+              ref: desc
             }}/>
             {/* <Button_Container label="Generar Cuento" onClick={() => {
               const description = desc.current?.value
@@ -94,8 +94,11 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
             <Text_Container text="Cantidad de Escenas" />
             <Range_Input range={{
               min: 2,
-              max: 5
-            }}/>
+              max: 5,
+            }}  props = {{
+              ref: size
+            }}
+            />
 
             <Text_Container text="Cantidad de Palabras por Escena" />
             <Range_Input range={{
