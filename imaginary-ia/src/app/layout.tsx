@@ -9,7 +9,7 @@ const geistSans = localFont({
 });
 
 const pixelyfySans = localFont({
-  src: "./fonts/Pixelify-Bold.ttf",
+  src: "./fonts/PixelifySans-Bold.ttf",
   variable: "--font-pixelify-sans",
   weight: "100 900"
 })

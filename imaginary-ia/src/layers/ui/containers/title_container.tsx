@@ -6,8 +6,8 @@ interface TitleProps {
 }
 
 export const Title_Container : FC<TitleProps> = ({title, className}) => {
-  className = className || "text-4xl text-center"
-  
+  className = className || "" 
+  className += " text-4xl text-center"
   return (
     <h1 className={className}>
       {title}
@@ -16,7 +16,8 @@ export const Title_Container : FC<TitleProps> = ({title, className}) => {
 }
 
 export const Subtitle_Container : FC<TitleProps> = ({title, className}) => {
-  className = className || "text-2xl text-center"
+  className = className || ""
+  className += " text-2xl text-center"
   
   return (
     <h1 className={className}>

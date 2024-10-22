@@ -20,8 +20,8 @@ export const Create_Story_Page : FC<PageProps> = () => {
       <Logo_Container/>
 
       <Title_Layout>
-        <Title_Container title="Imaginary.IA"/>
-        <Subtitle_Container title="Generador de cuentos para niños"/>
+        <Title_Container title="Imaginary.AI" className="font-pixelify text-5xl font-bold"/>
+        <Subtitle_Container title="Generador de cuentos para niños" className="font-pixelify "/>
       </Title_Layout>
 
       <Story_Creator_Component/>

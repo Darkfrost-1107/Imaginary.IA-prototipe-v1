@@ -42,7 +42,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
     <Grid_Layout>
         <Panel_Layout>
           
-          <Title_Container title="Contenido General"/>
+          <Title_Container title="Contenido General" className="p-1 font-pixelify"/>
           <Padding_Layout>
             <Subtitle_Container title="Titulo del Cuento" />
             <Text_Input props={{
