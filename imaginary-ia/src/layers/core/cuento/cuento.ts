@@ -29,7 +29,8 @@ export class Cuento extends Preview {
     this._escenas = []
     this._current_scene = null
     this._current_scene_order = 0
-    this._story_generator = new GeminiService(process.env.API_KEY!); // TODO: Implementar generador de historias
+    console.log(process.env.API_KEY)
+    this._story_generator = new GeminiService("AIzaSyDRoSGn9xnCtFgIQCZ74Gr6X8T3eG8iUyM"); // TODO: Implementar generador de historias
   }
 
   /**
@@ -88,12 +89,18 @@ export class Cuento extends Preview {
     }
 
     const responseText = await this._story_generator.sendMessage(input);
+    let new_scene : Cuento_Scene = {
+      id: this._escenas.length.toString(),
+      order: this._escenas.length,
+      content: responseText,
+      image: {
+        url: ""
+      },
+      options: []
+    }
 
-    let new_scene = create_scene({
-      scene,
-      input: responseText 
-    })
     this.add_scene(new_scene)
+    return new_scene
   }
 
   public save_story(){
