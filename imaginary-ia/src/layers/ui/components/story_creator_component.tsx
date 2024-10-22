@@ -14,6 +14,7 @@ import { Preview } from '@/layers/core/cuento/preview'
 import { Cuento_Scene } from '@/layers/core/cuento/cuento_scene'
 import { randomUUID } from 'crypto'
 import { Text_Input } from '../inputs/text_input'
+import { Dialog_Component } from './dialog/dialog_component'
 
 
 
@@ -103,6 +104,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           </Padding_Layout>
 
           <Padding_Layout>
+            <Dialog_Component label="Crear Cuento"/>
             <Button_Container label="Crear Cuento" onClick={ () => {
               let preview = new Preview({
                 id: randomUUID(),
