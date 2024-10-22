@@ -34,7 +34,7 @@ export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close, story}
         <Panel_Layout>
           <Subtitle_Container title="Continua tu historia"/>
           <Text_Container text={currentScene?.content || ""} />
-          <div>
+          <div className="flex flex-wrap justify-center">
             {currentScene?.options.map((elem)=>{
               return (
                 <Button_Container 
