@@ -19,11 +19,13 @@ export const Range_Input : FC<Range_Input_Props> = ({className, range}) => {
   return (
     <div className="p-8">
       <Input_Base className={className} props={{
-      type:"range"
+        type:"range",
+        min: range.min,
+        max: range.max,
       }} />
     <div className="pt-2 flex justify-between w-full">
-        <Text_Container text="0" />
-        <Text_Container text="10" />
+        <Text_Container text={range.min} />
+        <Text_Container text={range.max} />
     </div>
     </div>
     

@@ -112,7 +112,6 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
               let story = new Cuento(preview)
 
-
             }}/>
           </Padding_Layout>
 
