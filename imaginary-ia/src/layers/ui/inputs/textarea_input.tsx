@@ -1,5 +1,6 @@
 import {FC} from 'react'
 import { Input_Props } from './types'
+import { Input_Base } from './input_base'
 
 interface TextArea_Input_Props extends Input_Props {
   //Props
@@ -8,6 +9,6 @@ interface TextArea_Input_Props extends Input_Props {
 export const TextArea_Input : FC<TextArea_Input_Props> = ({className, props}) => {
   className = className || ""
   return (
-    <textarea className={className} {...props}></textarea>
+    <Input_Base className={className} props={props} Component="textarea"/>
   )
 }

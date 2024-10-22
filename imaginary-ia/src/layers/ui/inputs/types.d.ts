@@ -3,4 +3,5 @@ export interface Input_Props {
   props? : {
     [key: string]: any
   }
+  Component?: any
 }
