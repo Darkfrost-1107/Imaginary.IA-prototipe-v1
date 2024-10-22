@@ -59,7 +59,7 @@ export class Cuento extends Preview {
 
   public start() {
     if(this._escenas.length == 0){
-      this.new_scene("")
+      this.new_scene()
     }
     this._current_scene_order = -1
   }
@@ -85,7 +85,7 @@ export class Cuento extends Preview {
    * @param input Opcion escogida por el usuario
    */
 
-  public async new_scene(input : string) {
+  public async new_scene() {
 
     if (this._record.size === this._escenas.length) {
       console.log("El cuento ya tiene el número máximo de escenas.");
@@ -96,7 +96,7 @@ export class Cuento extends Preview {
       // const respose = await this._story_generator.sendMessage(this._record.synopsis)
     }
 
-    const responseText = await this._story_generator.sendMessage(input, this._record.size);
+    const responseText = await this._story_generator.sendMessage(this._record.synopsis || "", this._record.size);
     try {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
