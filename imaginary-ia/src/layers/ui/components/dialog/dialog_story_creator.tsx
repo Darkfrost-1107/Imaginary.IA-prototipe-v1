@@ -71,7 +71,7 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
   
   return (
     <BookContainer>
-      {/* <Title_Container title="Continua tu historia" /> */}
+      <Title_Container title="Continua tu historia" />
       <Grid_Layout>
         <Panel_Layout>
           <Image src="/logo.png" alt="" width={512} height={512} />
