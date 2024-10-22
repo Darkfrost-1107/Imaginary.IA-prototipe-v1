@@ -110,19 +110,18 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           <Padding_Layout>
             <Dialog_Component label="Crear Cuento">
               {({close} : {close: () => void}) => {
+                let story = new Cuento(
+                  new Preview(
+                    {
+                      id: "a",
+                      titulo: title.current?.value || "Titulo",
+                      size: (size.current ? +size.current.value : 3 ),
+                      synopsis: desc.current?.value || ""
+                    }
+                  )
+                )
                 return(
-                  <Dialog_Story_Creator close={close} story={
-                    new Cuento(
-                      new Preview(
-                        {
-                          id: "a",
-                          titulo: title.current?.value || "Titulo",
-                          size: (size.current ? +size.current.value : 3 ),
-                          synopsis: desc.current?.value || ""
-                        }
-                      )
-                    )
-                  } />
+                  <Dialog_Story_Creator close={close} story={story} />
                 )
               }
               }

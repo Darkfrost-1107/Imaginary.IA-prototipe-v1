@@ -57,11 +57,13 @@ export class Cuento extends Preview {
    * @returns {Cuento_Scene} primera escena del cuento
    */
 
-  public start() {
-    if(this._escenas.length == 0){
-      this.new_scene()
-    }
+  public async start() {
     this._current_scene_order = -1
+    if(this._escenas.length == 0){
+      await this.new_scene()
+    }
+    this.next_scene()
+    return this
   }
 
   /**
@@ -72,7 +74,7 @@ export class Cuento extends Preview {
   public next_scene() : Cuento_Scene {
     this._current_scene_order += 1
     this._current_scene = this._escenas[this._current_scene_order]
-    return this.current_scene
+    return this._current_scene
   }
 
   public async create_next_scene(option: Cuento_Option){
@@ -92,11 +94,9 @@ export class Cuento extends Preview {
       return null;
     }
 
-    if (this._record.size === 0){
+    if (this._escenas.length === 0){
       // const respose = await this._story_generator.sendMessage(this._record.synopsis)
-    }
-
-    const responseText = await this._story_generator.sendMessage(this._record.synopsis || "", this._record.size);
+      const responseText = await this._story_generator.sendMessage(this._record.synopsis || "", this._record.size);
     try {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
@@ -112,11 +112,14 @@ export class Cuento extends Preview {
       };
   
       this.add_scene(new_scene);
+      this._current_scene = new_scene
       return new_scene;
     } catch (error) {
         console.error("Error al parsear la respuesta JSON:", error);
         throw new Error("Formato de respuesta inesperado");
     }
+    }
+    
   }
 
   public save_story(){

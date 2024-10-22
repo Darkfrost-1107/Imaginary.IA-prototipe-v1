@@ -45,11 +45,20 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
 
 export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story }) => {
   const [currentStory, updateStory] = useState<Cuento>(story);
-  const [currentScene, updateScene] = useState<Cuento_Scene>();
 
   useEffect(() => {
+    if(currentStory.current_scene == null){
+      console.log("Historia vacia")
+      currentStory.start().then((cuento) => {
+        updateStory(cuento)
+      })
+    }
+    console.log(currentStory)
+  }, [currentStory])
 
-  }, [story]);
+  currentStory.start().then((cuento) => {
+    updateStory(cuento)
+  },)
 
   return (
     <BookContainer>
@@ -60,9 +69,9 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
         </Panel_Layout>
         <Panel_Layout>
           <Subtitle_Container title="Continua tu historia" />
-          <Text_Container text={currentScene?.content || ""} />
+          <Text_Container text={currentStory.current_scene?.content || "Alabado sea"} />
           <div className="flex flex-wrap justify-center">
-            {currentScene?.options.map((elem) => (
+            {currentStory.current_scene?.options.map((elem) => (
               <Button_Container 
                 key={elem.label}
                 label={elem.label}
