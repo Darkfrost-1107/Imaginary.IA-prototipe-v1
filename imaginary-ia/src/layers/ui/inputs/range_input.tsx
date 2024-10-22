@@ -13,16 +13,17 @@ type Range_Interval = {
   max: number
 }
 
-export const Range_Input : FC<Range_Input_Props> = ({className, range}) => {
+export const Range_Input : FC<Range_Input_Props> = ({className, range, props}) => {
   className = className || "h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
-  
+  props = props || {}
+  props = { ...props,
+    type:"range",
+    min: range.min,
+    max: range.max,
+  }
   return (
     <div className="p-8">
-      <Input_Base className={className} props={{
-        type:"range",
-        min: range.min,
-        max: range.max,
-      }} />
+      <Input_Base className={className} props={props} />
     <div className="pt-2 flex justify-between w-full">
         <Text_Container text={range.min} />
         <Text_Container text={range.max} />
