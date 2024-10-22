@@ -5,9 +5,9 @@ interface TextArea_Input_Props extends Input_Props {
   //Props
 }
 
-export const TextArea_Input : FC<TextArea_Input_Props> = ({className}) => {
+export const TextArea_Input : FC<TextArea_Input_Props> = ({className, props}) => {
   className = className || ""
   return (
-    <textarea className={className}></textarea>
+    <textarea className={className} {...props}></textarea>
   )
 }
