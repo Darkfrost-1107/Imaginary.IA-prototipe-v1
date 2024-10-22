@@ -16,7 +16,7 @@ interface Dialog_Component_Props {
 
 const BookContainer = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative bg-amber-50 max-w-2xl w-full rounded-lg shadow-2xl">
+    <div className="relative bg-amber-200 max-w-2xl w-full rounded-lg shadow-2xl">
       <div className="absolute -left-2 top-0 bottom-0 w-2 bg-amber-900 rounded-l" />
       <div className="absolute -right-2 top-0 bottom-0 w-2 bg-amber-800 rounded-r" />
       
@@ -29,7 +29,7 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         
-        <div className="prose prose-amber max-w-none">
+        <div className="prose prose-amber max-w-none text-black">
           {children}
         </div>
         
@@ -71,7 +71,7 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
   
   return (
     <BookContainer>
-      <Title_Container title="Continúa tu historia" />
+      {/* <Title_Container title="Continua tu historia" /> */}
       <Grid_Layout>
         <Panel_Layout>
           <Image src="/logo.png" alt="" width={512} height={512} />

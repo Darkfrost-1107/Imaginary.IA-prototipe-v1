@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Create_Story_Page } from "@/layers/ui/pages/create_story";
+import { Landing_Page } from "@/layers/ui/pages/landing_page";
 export default function Home() {
-  return <Create_Story_Page />;
+  return <Landing_Page />;
 }
 
 // export default function Home() {
