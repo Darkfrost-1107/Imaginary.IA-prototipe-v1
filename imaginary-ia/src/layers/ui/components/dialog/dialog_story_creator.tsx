@@ -40,7 +40,7 @@ export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close, story}
                 <Button_Container 
                   label={elem.label}
                   onClick={() => {
-                    story.create_next_scene(elem.label)
+                    story.create_next_scene(elem)
                   }} 
                 />
               )
