@@ -1,5 +1,6 @@
 import {FC} from 'react'
 import { Input_Props } from './types'
+import { Input_Base } from './input_base'
 
 interface Range_Input_Props extends Input_Props {
   //Props
@@ -8,8 +9,8 @@ interface Range_Input_Props extends Input_Props {
 export const Range_Input : FC<Range_Input_Props> = ({className}) => {
   className = className || ""
   return (
-    <div className={className}>
-      1 - 10
-    </div>
+    <Input_Base className={className} props={{
+      type:"range"
+    }} />
   )
 }
