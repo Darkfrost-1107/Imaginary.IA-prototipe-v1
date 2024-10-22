@@ -125,10 +125,10 @@ export class Cuento extends Preview {
 
 
     // Verifica si se ha alcanzado el límite de escenas
-    if (this._record.size === this._escenas.length) {
-      console.log("El cuento ya tiene el número máximo de escenas.");
-      return null;
-    }
+    // if (this._record.size === this._escenas.length) {
+    //   console.log("El cuento ya tiene el número máximo de escenas.");
+    //   return null;
+    // }
 
     const responseText = await this._story_generator.new_scene(undefined, this._escenas.length)
     // Solo se manda la descripción y el tamaño la primera vez
