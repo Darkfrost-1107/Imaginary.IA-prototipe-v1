@@ -6,7 +6,7 @@ interface Panel_Layout_Props extends Layout_Props {
 }
 
 export const Panel_Layout : FC<Panel_Layout_Props> = ({className, children}) => {
-  className = className || "border border-white m-4"
+  className = className || "border m-4 border-dashed border-4 border-white rounded-lg"
   return (
     <div className={className}>
       {children}
@@ -15,7 +15,7 @@ export const Panel_Layout : FC<Panel_Layout_Props> = ({className, children}) => 
 }
 
 export const Padding_Layout : FC<Panel_Layout_Props> = ({className, children}) => {
-  className = className || "p-4"
+  className = className || "p-5 m-1"
   return (
     <div className={className}>
       {children}

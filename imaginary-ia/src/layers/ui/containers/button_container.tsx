@@ -13,7 +13,7 @@ export const Button_Container: FC<Button_Props> = ({ onClick, label, className }
     <button
       type="button"
       onClick={onClick}
-      className={`w-full rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2 ${className}`}
+      className={`w-full font-pixelify rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2 ${className}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

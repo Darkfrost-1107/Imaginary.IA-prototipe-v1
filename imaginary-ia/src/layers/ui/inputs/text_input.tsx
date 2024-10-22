@@ -7,7 +7,7 @@ interface Text_Input_Props extends Input_Props {
 }
 
 export const Text_Input : FC<Text_Input_Props> = ({className, props}) => {
-  className = className || "w-full  rounded-lg p-4 bg-black/5 border-2 border-solid border-white font-mono font-medium text-sm color-white placeholder-white"
+  className = className || "w-full  rounded-lg p-4 bg-black/5 border-2 border-dashed border-white font-mono font-medium text-sm color-white placeholder-white"
 
   props = props || {}
   props = { ...props,

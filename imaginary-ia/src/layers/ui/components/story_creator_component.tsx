@@ -44,13 +44,13 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           
           <Title_Container title="Contenido General" className="p-1 font-pixelify"/>
           <Padding_Layout>
-            <Subtitle_Container title="Titulo del Cuento" />
+            <Subtitle_Container title="Titulo del Cuento" className="font-pixelify text-3xl pb-1"/>
             <Text_Input props={{
               ref: title
             }}/>
           </Padding_Layout>
           <Padding_Layout>
-            <Subtitle_Container title="Descripción del Cuento"/>
+            <Subtitle_Container title="Descripción del Cuento" className='font-pixelify text-3xl pb-1'/>
             <TextArea_Input props={{
               ref: desc
             }}/>
@@ -84,7 +84,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           </Padding_Layout>
 
           <Padding_Layout>
-            <Subtitle_Container title="Temática del Cuento"/>
+            <Subtitle_Container title="Temática del Cuento" className='font-pixelify text-3xl pb-1'/>
             <Select_Input options={Topics_List} props={{
               ref: topics
             }} />
@@ -93,10 +93,10 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
         </Panel_Layout>
 
         <Panel_Layout>
-          <Title_Container title="Otras configuraciones"/>
+          <Title_Container title="Configuraciones" className='font-pixelify p-1'/>
           <Padding_Layout>
-            <Subtitle_Container title="Tiempo de Lectura"/>
-            <Text_Container text="Cantidad de Escenas" />
+            <Subtitle_Container title="Tiempo de Lectura" className='font-pixelify text-3xl pb-1'/>
+            <Text_Container text="Cantidad de Escenas" className='font-pixelify text-2xl pb-1'/>
             <Range_Input range={{
               min: 2,
               max: 5,
@@ -105,7 +105,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
             }}
             />
 
-            <Text_Container text="Cantidad de Palabras por Escena" />
+            <Text_Container text="Cantidad de Palabras por Escena" className='font-pixelify text-3xl pb-1'/>
             <Range_Input range={{
               min: 50,
               max: 100
@@ -115,7 +115,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           </Padding_Layout>
 
           <Padding_Layout>
-            <Dialog_Component label="Crear Cuento">
+            <Dialog_Component   label="Crear Cuento">
               {({close} : {close: () => void}) => {
                 let story = new Cuento(
                   new Preview(
