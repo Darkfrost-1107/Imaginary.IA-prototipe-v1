@@ -16,7 +16,7 @@ type Range_Interval = {
 export const Range_Input: FC<Range_Input_Props> = ({ className, range, props }) => {
   
   
-  const [currentValue, setCurrentValue] = useState(5);  
+  const [currentValue, setCurrentValue] = useState(range.min);  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value);
