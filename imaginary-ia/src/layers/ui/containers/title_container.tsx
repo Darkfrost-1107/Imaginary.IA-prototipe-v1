@@ -5,7 +5,7 @@ interface TitleProps {
   className?: string
 }
 
-export const Title_Component : FC<TitleProps> = ({title, className}) => {
+export const Title_Container : FC<TitleProps> = ({title, className}) => {
   className = className || ""
   
   return (
@@ -15,7 +15,7 @@ export const Title_Component : FC<TitleProps> = ({title, className}) => {
   )
 }
 
-export const Subtitle_Component : FC<TitleProps> = ({title, className}) => {
+export const Subtitle_Container : FC<TitleProps> = ({title, className}) => {
   className = className || ""
   
   return (
