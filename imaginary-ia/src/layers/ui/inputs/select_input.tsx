@@ -11,6 +11,8 @@ const Option_className = ""
 
 export const Select_Input : FC<Select_Input_Props> = ({className, options}) => {
   className = className || ""
+  className += " flex gap-4 flex-wrap justify-center py-2"
+  
   return (
     <div className={className}>
       {options.map((option, index) => {
