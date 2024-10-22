@@ -40,6 +40,11 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
               ref:desc
             }}/>
             <Button_Container label="Generar Cuento" onClick={() => {
+              const description = desc.current?.value
+              if (!description) {
+                console.error("Descripción no proporcionada.");
+                return;
+              }
               let story = new Cuento(new Preview({
                 id: "1",
                 titulo: "Cuento de Prueba",
@@ -55,7 +60,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
                 },
                 options: []
               }
-              story.new_scene(scene, "").then((scene) => {
+              story.new_scene(scene, description).then((scene) => {
                 console.log(scene)
               })
             }}/>
