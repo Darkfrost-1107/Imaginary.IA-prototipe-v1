@@ -7,7 +7,7 @@ interface TextArea_Input_Props extends Input_Props {
 }
 
 export const TextArea_Input : FC<TextArea_Input_Props> = ({className, props}) => {
-  className = className || ""
+  className = className || "w-full h-52"
   return (
     <Input_Base className={className} props={props} Component="textarea"/>
   )

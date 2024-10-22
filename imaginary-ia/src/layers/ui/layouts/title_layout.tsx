@@ -3,7 +3,7 @@ import { Layout_Props } from './types'
 
 
 export const Title_Layout : FC<Layout_Props> = ({className, children}) => {
-  className = className || ""
+  className = className || "w-full"
   
   return (
     <div className={className}>
