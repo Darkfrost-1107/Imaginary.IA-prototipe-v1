@@ -48,11 +48,7 @@ export class GeminiService {
     }
 
     async sendMessage(tema: string, numEscenas: number) {
-        const prompt = generate_create_prompt({
-            scene_desc: tema, 
-            scene_numb: 0, 
-            scene_size: 100
-        }, numEscenas);
+        const prompt = ""
 
         try {
             const result = await this.chat.sendMessage(prompt);
@@ -75,29 +71,4 @@ export class GeminiService {
             throw new Error("Error al conectar con la API de Gemini");
         }
     }
-}
-
-type Cuento_Scene_Options = {
-    scene_size?: number;
-    scene_numb?: number;
-    scene_desc?: string;
-}
-function generate_create_prompt({scene_desc, scene_numb, scene_size}: Cuento_Scene_Options, max_size: number){
-    let prompt = ""
-    if(scene_numb == 0){
-        prompt = `Escribe un cuento interactivo sobre "${scene_desc}". 
-        El cuento debe tener exactamente ${max_size} escenas, cada una de aproximadamente ${scene_size} palabras. 
-        Al final de cada escena, presenta 3 opciones para que el usuario elija cómo continuar la historia, 
-        incluyendo una opción adicional para que el usuario elija continuar la historia de manera libre. 
-        Asegúrate de que el cuento llegue a un final satisfactorio en ese número exacto de escenas y no se sobrepase.
-
-        Detente después de cada escena y espera a que el usuario seleccione una opción para avanzar.
-        `
-    } else if (scene_numb == max_size){
-        prompt = `El usuario ha elegido la opción: ${scene_desc}. Termina la historia`
-    } else {
-        prompt = `El usuario ha elegido la opción: ${scene_desc}. Continúa la historia, faltan ${max_size - (scene_numb || 0)}`
-    }
-
-    return prompt
 }
