@@ -12,6 +12,8 @@ import { Cuento } from '@/layers/core/cuento/cuento'
 import { title } from 'process'
 import { Preview } from '@/layers/core/cuento/preview'
 import { Cuento_Scene } from '@/layers/core/cuento/cuento_scene'
+import { randomUUID } from 'crypto'
+import { Text_Input } from '../inputs/text_input'
 
 
 
@@ -36,6 +38,12 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
         <Panel_Layout>
           
           <Title_Container title="Contenido General"/>
+          <Padding_Layout>
+            <Subtitle_Container title="Titulo del Cuento" />
+            <Text_Input props={{
+              ref: title
+            }}/>
+          </Padding_Layout>
           <Padding_Layout>
             <Subtitle_Container title="Descripción del Cuento"/>
             <TextArea_Input props={{
@@ -97,10 +105,14 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           <Padding_Layout>
             <Button_Container label="Crear Cuento" onClick={ () => {
               let preview = new Preview({
-                id: "1",
-                titulo : "XD",
-                size : 5,
+                id: randomUUID(),
+                titulo : title.current?.value || "Titulo",
+                size : size.current ? +size.current.value : 3,
               })
+
+              let story = new Cuento(preview)
+
+
             }}/>
           </Padding_Layout>
 
