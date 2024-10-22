@@ -8,6 +8,7 @@ interface Button_Props {
 
 export const Button_Container : FC<Button_Props> = ({onClick, label, className}) => {
   className = className || ""
+  className += ""
   return (
     <button type="button" onClick={onClick} className={className}>
       {label}
