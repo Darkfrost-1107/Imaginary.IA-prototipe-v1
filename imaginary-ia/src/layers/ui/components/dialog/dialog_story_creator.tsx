@@ -1,65 +1,79 @@
-import { DialogPanel } from '@headlessui/react'
-import {FC, useEffect, useState} from 'react'
-import { Subtitle_Container, Title_Container } from '../../containers/title_container'
-import { Grid_Layout } from '../../layouts/grid_layout'
-import { Panel_Layout } from '../../layouts/panel_layout'
-import Image from 'next/image'
-import { Cuento } from '@/layers/core/cuento/cuento'
-import { Text_Container } from '../../containers/text_container'
-import { Cuento_Scene } from '@/layers/core/cuento/cuento_scene'
-import { Button_Container } from '../../containers/button_container'
+import { FC, useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Cuento } from '@/layers/core/cuento/cuento';
+import { Cuento_Scene } from '@/layers/core/cuento/cuento_scene';
+import { Title_Container, Subtitle_Container } from '../../containers/title_container';
+import { Grid_Layout } from '../../layouts/grid_layout';
+import { Panel_Layout } from '../../layouts/panel_layout';
+import { Text_Container } from '../../containers/text_container';
+import { Button_Container } from '../../containers/button_container';
 
 interface Dialog_Component_Props {
-  //Props
-  close: () => void
-  story: Cuento
+  close: () => void;
+  story: Cuento;
 }
 
-export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close, story}) => {
+const BookContainer = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="relative bg-amber-50 max-w-2xl w-full rounded-lg shadow-2xl">
+      <div className="absolute -left-2 top-0 bottom-0 w-2 bg-amber-900 rounded-l" />
+      <div className="absolute -right-2 top-0 bottom-0 w-2 bg-amber-800 rounded-r" />
+      
+      <div className="absolute inset-y-0 left-1/2 w-6 bg-amber-800" />
+      <div className="relative p-8 bg-gradient-to-b from-amber-50 to-amber-100">
+        <div className="border-b-2 border-amber-800 mb-6">
+          <div className="flex justify-between items-center">
+            <div className="h-1 w-12 bg-amber-800" />
+            <div className="h-1 w-12 bg-amber-800" />
+          </div>
+        </div>
+        
+        <div className="prose prose-amber max-w-none">
+          {children}
+        </div>
+        
+        <div className="border-t-2 border-amber-800 mt-6">
+          <div className="flex justify-between items-center">
+            <div className="h-1 w-12 bg-amber-800" />
+            <div className="h-1 w-12 bg-amber-800" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  // console.log(story)
-  const [currentStory, updateStory] = useState<Cuento>(story)
-  
+export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story }) => {
+  const [currentStory, updateStory] = useState<Cuento>(story);
+  const [currentScene, updateScene] = useState<Cuento_Scene>();
+
   useEffect(() => {
-    console.log(currentStory)
-    updateScene(currentStory.next_scene)
-  }, [currentStory])
-  const [currentScene, updateScene] = useState<Cuento_Scene>()
 
-  // updateScene(story.new_scene(currentScene))
+  }, [story]);
 
   return (
-    <div className="bg-black rounded-lg p-8">
+    <BookContainer>
       <Title_Container title="Continua tu historia" />
       <Grid_Layout>
         <Panel_Layout>
-          <Image src="/logo.png" alt="" width={512} height={512}/>
+          <Image src="/logo.png" alt="" width={512} height={512} />
         </Panel_Layout>
         <Panel_Layout>
-          <Subtitle_Container title="Continua tu historia"/>
+          <Subtitle_Container title="Continua tu historia" />
           <Text_Container text={currentScene?.content || ""} />
           <div className="flex flex-wrap justify-center">
-            {currentScene?.options.map((elem)=>{
-              return (
-                <Button_Container 
-                  label={elem.label}
-                  onClick={() => {
-                    story.create_next_scene(elem)
-                  }} 
-                />
-              )
-            })}
+            {currentScene?.options.map((elem) => (
+              <Button_Container 
+                key={elem.label}
+                label={elem.label}
+                onClick={() => {
+                  story.create_next_scene(elem);
+                }} 
+              />
+            ))}
           </div>
         </Panel_Layout>
       </Grid_Layout>
-      {/* <DialogTitle className="font-bold">Deactivate account</DialogTitle> */}
-      {/* <Description>This will permanently deactivate your account</Description> */}
-      {/* <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p> */}
-      {/* <div className="flex gap-4">
-        <button onClick={() => setOpen(false)}>Cancel</button>
-        <button onClick={() => setOpen(false)}>Deactivate</button>
-      </div> */}
-    </div>
-    
-  )
-}
+    </BookContainer>
+  );
+};
