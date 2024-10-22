@@ -27,6 +27,8 @@ type Cuento_Generator = {
 export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
   const desc = useRef<HTMLTextAreaElement>(null)
+  const size = useRef<HTMLInputElement>(null)
+  const title = useRef<HTMLInputElement>(null)
   const [cuento, setCuento] = useState<Cuento_Generator>({})
 
   return (
@@ -80,10 +82,16 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           <Padding_Layout>
             <Subtitle_Container title="Tiempo de Lectura"/>
             <Text_Container text="Cantidad de Escenas" />
-            <Range_Input/>
+            <Range_Input range={{
+              min: 2,
+              max: 5
+            }}/>
 
             <Text_Container text="Cantidad de Palabras por Escena" />
-            <Range_Input/>
+            <Range_Input range={{
+              min: 50,
+              max: 100
+            }}/>
           </Padding_Layout>
 
           <Padding_Layout>

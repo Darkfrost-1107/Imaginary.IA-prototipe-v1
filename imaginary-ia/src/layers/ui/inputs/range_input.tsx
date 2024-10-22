@@ -5,18 +5,26 @@ import { Text_Container } from '../containers/text_container'
 
 interface Range_Input_Props extends Input_Props {
   //Props
+  range: Range_Interval
 }
 
-export const Range_Input : FC<Range_Input_Props> = ({className}) => {
+type Range_Interval = {
+  min: number
+  max: number
+}
+
+export const Range_Input : FC<Range_Input_Props> = ({className, range}) => {
   className = className || "h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
   return (
     <div className="p-16">
     <div className="flex justify-between w-full">
-        <Text_Container text="0" />
-        <Text_Container text="10" />
+        <Text_Container text={range.min} />
+        <Text_Container text={range.max} />
     </div>
     <Input_Base className={className} props={{
-      type:"range"
+      type:"range",
+      min: range.min,
+      max: range.max,
     }} />
     </div>
     
