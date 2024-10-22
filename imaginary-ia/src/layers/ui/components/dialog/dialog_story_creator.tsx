@@ -1,6 +1,7 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { Cuento } from '@/layers/core/cuento/cuento';
+import { Cuento_Option } from "@/layers/core/cuento/cuento_option";
 import { Cuento_Scene } from '@/layers/core/cuento/cuento_scene';
 import { Title_Container, Subtitle_Container } from '../../containers/title_container';
 import { Grid_Layout } from '../../layouts/grid_layout';
@@ -45,42 +46,48 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
 
 export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story }) => {
   const [currentStory, updateStory] = useState<Cuento>(story);
+  const hasStartedRef = useRef(false); // Referencia para verificar si ya se ha iniciado la historia
 
   useEffect(() => {
-    if(currentStory.current_scene == null){
-      console.log("Historia vacia")
-      currentStory.start().then((cuento) => {
-        updateStory(cuento)
-      })
+    if (currentStory.current_scene == null && !hasStartedRef.current) {
+      
+      currentStory.start().then(() => {
+        updateStory(Object.assign(Object.create(Object.getPrototypeOf(currentStory)), currentStory));
+      });
+      console.log(currentStory);
+      hasStartedRef.current = true;
     }
-    console.log(currentStory)
-  }, [currentStory])
+  }, [currentStory]);
 
-  currentStory.start().then((cuento) => {
-    updateStory(cuento)
-  },)
+  console.log(currentStory);
+  
+  // console.log(JSON.stringify(currentStory, null, 2));
 
+  const handleOptionSelect = async (option: Cuento_Option) => {
+    console.log("Opción seleccionada:", option); 
+    await currentStory.create_next_scene(option);
+    updateStory(Object.assign(Object.create(Object.getPrototypeOf(currentStory)), currentStory));
+  };
+  
   return (
     <BookContainer>
-      <Title_Container title="Continua tu historia" />
+      <Title_Container title="Continúa tu historia" />
       <Grid_Layout>
         <Panel_Layout>
           <Image src="/logo.png" alt="" width={512} height={512} />
         </Panel_Layout>
         <Panel_Layout>
-          <Subtitle_Container title="Continua tu historia" />
-          <Text_Container text={currentStory.current_scene?.content || "Alabado sea"} />
+          <Subtitle_Container title="Continúa tu historia" />
+          <Text_Container text={currentStory.current_scene?.content || "Historia no disponible"} />
           <div className="flex flex-wrap justify-center">
-            {currentStory.current_scene?.options.map((elem) => (
-              <Button_Container 
-                key={elem.label}
-                label={elem.label}
-                onClick={() => {
-                  story.create_next_scene(elem);
-                }} 
-              />
-            ))}
-          </div>
+          {currentStory.current_scene?.options.map((option, index) => (
+            <Button_Container 
+              key={index}
+              label={option.label}
+              onClick={() => handleOptionSelect(option)}
+            />
+          ))}
+        </div>
         </Panel_Layout>
       </Grid_Layout>
     </BookContainer>
