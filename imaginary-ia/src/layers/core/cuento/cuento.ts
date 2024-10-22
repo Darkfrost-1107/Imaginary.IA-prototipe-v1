@@ -11,6 +11,7 @@ const PRORROG_SCENE_ID = 'PRORROG'
  * @prop {Cuento_Scene[]} _escenas lista de escenas del cuento
  * @prop {Cuento_Scene} _current_scene escena actual del cuento
  * @prop {number} _current_scene_order orden de la escena actual
+ * @prop {GeminiService} _story_generator servicio de generación de historias
  */
 
 export class Cuento extends Preview {
@@ -29,7 +30,6 @@ export class Cuento extends Preview {
     this._escenas = []
     this._current_scene = null
     this._current_scene_order = 0
-    console.log(process.env.API_KEY)
     this._story_generator = new GeminiService("AIzaSyDRoSGn9xnCtFgIQCZ74Gr6X8T3eG8iUyM"); // TODO: Implementar generador de historias
   }
 
@@ -80,27 +80,36 @@ export class Cuento extends Preview {
    */
 
   public async new_scene(scene: Cuento_Scene, input: string) {
-    if(!scene){
-      return null;  
-    }
-
-    if(this._record.size === this._escenas.length){
+    if (!scene) {
       return null;
     }
 
-    const responseText = await this._story_generator.sendMessage(input);
-    let new_scene : Cuento_Scene = {
-      id: this._escenas.length.toString(),
-      order: this._escenas.length,
-      content: responseText,
-      image: {
-        url: ""
-      },
-      options: []
+    if (this._record.size === this._escenas.length) {
+      console.log("El cuento ya tiene el número máximo de escenas.");
+      return null;
     }
 
-    this.add_scene(new_scene)
-    return new_scene
+    const responseText = await this._story_generator.sendMessage(input, this._record.size);
+    try {
+      const jsonResponse = JSON.parse(responseText);
+      const { content, options } = jsonResponse.scene;
+  
+      let new_scene: Cuento_Scene = {
+        id: this._escenas.length.toString(),
+        order: this._escenas.length,
+        content: content,
+        image: {
+          url: ""
+        },
+        options: options
+      };
+  
+      this.add_scene(new_scene);
+      return new_scene;
+    } catch (error) {
+        console.error("Error al parsear la respuesta JSON:", error);
+        throw new Error("Formato de respuesta inesperado");
+    }
   }
 
   public save_story(){
