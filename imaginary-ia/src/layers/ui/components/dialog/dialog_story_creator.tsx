@@ -9,7 +9,7 @@ interface Dialog_Component_Props {
 
 export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close}) => {
   return (
-    <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+    <div className="bg-black rounded-lg p-8">
       <Title_Container title="Continua tu historia" />
       {/* <DialogTitle className="font-bold">Deactivate account</DialogTitle> */}
       {/* <Description>This will permanently deactivate your account</Description> */}
@@ -18,6 +18,7 @@ export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close}) => {
         <button onClick={() => setOpen(false)}>Cancel</button>
         <button onClick={() => setOpen(false)}>Deactivate</button>
       </div> */}
-    </DialogPanel>
+    </div>
+    
   )
 }

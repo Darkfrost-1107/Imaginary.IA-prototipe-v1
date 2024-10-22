@@ -19,7 +19,9 @@ export const Dialog_Component : FC<DialogProps> = ({label, children}) => {
       <Button_Container onClick={swap} label={label} />
       <Dialog open={isOpen} onClose={() => setOpen(false)} className="relative z-50" >
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/20">
+          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
             <Component close={swap}/>
+          </DialogPanel>
             {/* <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
               <DialogTitle className="font-bold">Deactivate account</DialogTitle>
               <Description>This will permanently deactivate your account</Description>
