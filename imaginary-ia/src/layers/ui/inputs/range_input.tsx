@@ -24,15 +24,15 @@ export const Range_Input: FC<Range_Input_Props> = ({ className }) => {
           <Input_Base 
             props={{
               type: "range",
-              min: "0",
-              max: "10",
+              min: range.min,
+              max: range.max,
               value: currentValue,
               onChange: handleChange
             }} 
           />
           <div className="pt-2 flex justify-between w-full">
-            <Text_Container text="0" />
-            <Text_Container text="10" />
+            <Text_Container text={range.min} />
+            <Text_Container text={range.max} />
           </div>
         </div>
         <div className="bg-blue-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-lg font-semibold shadow-lg">
