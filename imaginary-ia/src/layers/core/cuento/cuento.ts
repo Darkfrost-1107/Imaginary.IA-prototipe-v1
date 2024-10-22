@@ -58,12 +58,11 @@ export class Cuento extends Preview {
    */
 
   public async start() {
-    this._current_scene_order = -1
-    if(this._escenas.length == 0){
-      await this.new_scene()
+    console.log("Iniciando cuento...");
+    if (this._escenas.length === 0) {
+      return this.new_scene();
     }
-    this.next_scene()
-    return this
+    return this;
   }
 
   /**
@@ -77,31 +76,24 @@ export class Cuento extends Preview {
     return this._current_scene
   }
 
-  public async create_next_scene(option: Cuento_Option){
-    
-  }
-
-  /**
-   * @brief Crea una nueva escena en el cuento
-   * @param scene Esqueleto de la escena actual
-   * @param input Opcion escogida por el usuario
-   */
-
-  public async new_scene() {
-
-    if (this._record.size === this._escenas.length) {
-      console.log("El cuento ya tiene el número máximo de escenas.");
+  public async create_next_scene(option: Cuento_Option) {
+    // Verifica si se ha alcanzado el límite de escenas
+    if (this._escenas.length > this._record.size) {
+      console.log("No se pueden agregar más escenas.");
       return null;
     }
 
-    if (this._escenas.length === 0){
-      // const respose = await this._story_generator.sendMessage(this._record.synopsis)
-      const responseText = await this._story_generator.sendMessage(this._record.synopsis || "", this._record.size);
+    console.log("Enviando opción a la API:", option.label); // Muestra la opción que se está enviando
+
+    // Genera una nueva escena basada en la opción seleccionada
+    const responseText = await this._story_generator.sendOptionMessage(option.label); // Enviar la opción a la IA
+    console.log("Respuesta de la API:", responseText); // Muestra la respuesta que recibes de la API
+
     try {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
-  
-      let new_scene: Cuento_Scene = {
+
+      const new_scene: Cuento_Scene = {
         id: this._escenas.length.toString(),
         order: this._escenas.length,
         content: content,
@@ -110,17 +102,57 @@ export class Cuento extends Preview {
         },
         options: options
       };
-  
-      this.add_scene(new_scene);
-      this._current_scene = new_scene
-      return new_scene;
+
+      this.add_scene(new_scene); // Agrega la nueva escena
+      this._current_scene = new_scene; // Actualiza la escena actual
+      this._current_scene_order += 1; // Incrementa el orden de la escena actual
+      return new_scene; // Devuelve la nueva escena
     } catch (error) {
-        console.error("Error al parsear la respuesta JSON:", error);
-        throw new Error("Formato de respuesta inesperado");
+      console.error("Error al parsear la respuesta JSON:", error);
+      throw new Error("Formato de respuesta inesperado");
     }
+}
+
+
+  /**
+   * @brief Crea una nueva escena en el cuento
+   * @param scene Esqueleto de la escena actual
+   * @param input Opcion escogida por el usuario
+   */
+
+  private async new_scene() {
+    // Verifica si se ha alcanzado el límite de escenas
+    if (this._record.size === this._escenas.length) {
+      console.log("El cuento ya tiene el número máximo de escenas.");
+      return null;
     }
-    
+
+    // Solo se manda la descripción y el tamaño la primera vez
+    const responseText = await this._story_generator.sendMessage(this._record.synopsis || "", this._record.size);
+    try {
+      const jsonResponse = JSON.parse(responseText);
+      const { content, options } = jsonResponse.scene;
+
+      const new_scene: Cuento_Scene = {
+        id: this._escenas.length.toString(),
+        order: this._escenas.length,
+        content: content,
+        image: {
+          url: ""
+        },
+        options: options
+      };
+
+      this.add_scene(new_scene);
+      this._current_scene = new_scene; // Establece la escena actual
+      this._current_scene_order += 1; // Incrementa el orden de la escena actual
+      return new_scene; // Devuelve la nueva escena
+    } catch (error) {
+      console.error("Error al parsear la respuesta JSON:", error);
+      throw new Error("Formato de respuesta inesperado");
+    }
   }
+
 
   public save_story(){
 

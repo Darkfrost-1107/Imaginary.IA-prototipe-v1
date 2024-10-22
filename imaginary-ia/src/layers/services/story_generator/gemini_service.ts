@@ -51,12 +51,25 @@ export class GeminiService {
         const prompt = `
         Escribe un cuento interactivo sobre "${tema}". 
         El cuento debe tener exactamente ${numEscenas} escenas, cada una de aproximadamente 100 palabras. 
-        Al final de cada escena, presenta 3 opciones para que el usuario elija cómo continuar la historia. 
+        Al final de cada escena, presenta 3 opciones para que el usuario elija cómo continuar la historia, 
+        incluyendo una opción adicional para que el usuario elija continuar la historia de manera libre. 
         Asegúrate de que el cuento llegue a un final satisfactorio en ese número exacto de escenas y no se sobrepase.
 
         Detente después de cada escena y espera a que el usuario seleccione una opción para avanzar.
         `;
-    
+
+        try {
+            const result = await this.chat.sendMessage(prompt);
+            return result.response.text();
+        } catch (error) {
+            console.error("Error al enviar mensaje:", error);
+            throw new Error("Error al conectar con la API de Gemini");
+        }
+    }
+
+    async sendOptionMessage(option: string) {
+        const prompt = `El usuario ha elegido la opción: ${option}.`;
+        
         try {
             const result = await this.chat.sendMessage(prompt);
             return result.response.text();
