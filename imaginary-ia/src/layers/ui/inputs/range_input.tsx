@@ -9,15 +9,16 @@ interface Range_Input_Props extends Input_Props {
 
 export const Range_Input : FC<Range_Input_Props> = ({className}) => {
   className = className || "h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
+  
   return (
-    <div className="p-16">
-    <div className="flex justify-between w-full">
+    <div className="p-8">
+      <Input_Base className={className} props={{
+      type:"range"
+      }} />
+    <div className="pt-2 flex justify-between w-full">
         <Text_Container text="0" />
         <Text_Container text="10" />
     </div>
-    <Input_Base className={className} props={{
-      type:"range"
-    }} />
     </div>
     
   )
