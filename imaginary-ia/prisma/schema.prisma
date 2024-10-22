@@ -46,6 +46,7 @@ model User {
   email         String?@unique
   emailVerified DateTime?
   image         String?
+  stories       Cuento[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -67,6 +68,9 @@ model Cuento {
   size Int
   image Imagen?
   escena Escena[]
+
+  userId String
+  user User @relation(fields: [userId], references: [id])
 }
 
 

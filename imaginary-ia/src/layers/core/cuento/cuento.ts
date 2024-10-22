@@ -16,6 +16,7 @@ export class Cuento extends Preview {
   private _escenas: Cuento_Scene[]
   private _current_scene: Cuento_Scene
   private _current_scene_order: number
+  private _story_generator: any
 
   /**
    * @brief Constructor de la clase Cuento en base a un Preview
@@ -27,6 +28,7 @@ export class Cuento extends Preview {
     this._escenas = []
     this._current_scene = null
     this._current_scene_order = 0
+    this._story_generator = null // TODO: Implementar generador de historias
   }
 
   /**
