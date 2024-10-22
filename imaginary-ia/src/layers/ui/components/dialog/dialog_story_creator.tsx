@@ -1,16 +1,33 @@
 import { DialogPanel } from '@headlessui/react'
-import {FC} from 'react'
-import { Title_Container } from '../../containers/title_container'
+import {FC, useState} from 'react'
+import { Subtitle_Container, Title_Container } from '../../containers/title_container'
+import { Grid_Layout } from '../../layouts/grid_layout'
+import { Panel_Layout } from '../../layouts/panel_layout'
+import Image from 'next/image'
+import { Cuento } from '@/layers/core/cuento/cuento'
+import { Text_Container } from '../../containers/text_container'
 
 interface Dialog_Component_Props {
   //Props
   close: () => void
+  story: Cuento
 }
 
-export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close}) => {
+export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close, story}) => {
+
+  const [currentStory, updateStory] = useState<Cuento>(story)
   return (
     <div className="bg-black rounded-lg p-8">
       <Title_Container title="Continua tu historia" />
+      <Grid_Layout>
+        <Panel_Layout>
+          <Image src="" alt=""/>
+        </Panel_Layout>
+        <Panel_Layout>
+          <Subtitle_Container title="Continua tu historia"/>
+          <Text_Container text={""} />
+        </Panel_Layout>
+      </Grid_Layout>
       {/* <DialogTitle className="font-bold">Deactivate account</DialogTitle> */}
       {/* <Description>This will permanently deactivate your account</Description> */}
       {/* <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p> */}
