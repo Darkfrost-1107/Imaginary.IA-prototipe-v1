@@ -3,6 +3,7 @@ import { Preview } from "./preview"
 import { create_scene } from "@/layers/services/story_generator/t_gen"
 import { create_cuento_image_binary } from "./utility"
 import { GeminiService } from "@/layers/services/story_generator/gemini_service";
+import { Cuento_Option } from "./cuento_option";
 
 const PRORROG_SCENE_ID = 'PRORROG'
 
@@ -57,9 +58,10 @@ export class Cuento extends Preview {
    */
 
   public start() {
-    this._current_scene_order = 0
-    this._current_scene = this._escenas[this._current_scene_order]
-    return this.current_scene
+    if(this._escenas.length == 0){
+      this.new_scene("")
+    }
+    this._current_scene_order = -1
   }
 
   /**
@@ -67,10 +69,14 @@ export class Cuento extends Preview {
    * @returns {Cuento_Scene} siguiente escena del cuento
    */
 
-  public next_scene() {
+  public next_scene() : Cuento_Scene {
     this._current_scene_order += 1
     this._current_scene = this._escenas[this._current_scene_order]
     return this.current_scene
+  }
+
+  public async create_next_scene(option: Cuento_Option){
+    
   }
 
   /**
@@ -79,14 +85,15 @@ export class Cuento extends Preview {
    * @param input Opcion escogida por el usuario
    */
 
-  public async new_scene(scene: Cuento_Scene, input: string) {
-    if (!scene) {
-      return null;
-    }
+  public async new_scene(input : string) {
 
     if (this._record.size === this._escenas.length) {
       console.log("El cuento ya tiene el número máximo de escenas.");
       return null;
+    }
+
+    if (this._record.size === 0){
+      // const respose = await this._story_generator.sendMessage(this._record.synopsis)
     }
 
     const responseText = await this._story_generator.sendMessage(input, this._record.size);
