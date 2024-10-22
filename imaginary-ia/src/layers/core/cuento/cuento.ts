@@ -79,10 +79,10 @@ export class Cuento extends Preview {
 
   public async create_next_scene(option: string) {
     // Verifica si se ha alcanzado el límite de escenas
-    if (this._escenas.length > this._record.size) {
-      console.log("No se pueden agregar más escenas.");
-      return null;
-    }
+    // if (this._escenas.length > this._record.size) {
+    //   console.log("No se pueden agregar más escenas.");
+    //   return null;
+    // }
 
     console.log("Enviando opción a la API:", option); // Muestra la opción que se está enviando
 

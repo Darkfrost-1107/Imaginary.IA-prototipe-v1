@@ -17,6 +17,7 @@ interface PageProps {
 export const Create_Story_Page : FC<PageProps> = () => {
   return (
     <div>
+      <div className="h-1"></div>
       <Logo_Container/>
 
       <Title_Layout>
