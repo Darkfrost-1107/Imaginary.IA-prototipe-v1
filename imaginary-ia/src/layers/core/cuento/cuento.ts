@@ -2,6 +2,7 @@ import { Cuento_Scene } from "./cuento_scene"
 import { Preview } from "./preview"
 import { create_scene } from "@/layers/services/story_generator/t_gen"
 import { create_cuento_image_binary } from "./utility"
+import { GeminiService } from "@/layers/services/story_generator/gemini_service";
 
 const PRORROG_SCENE_ID = 'PRORROG'
 
@@ -16,7 +17,7 @@ export class Cuento extends Preview {
   private _escenas: Cuento_Scene[]
   private _current_scene: Cuento_Scene
   private _current_scene_order: number
-  private _story_generator: any
+  private _story_generator: GeminiService;
 
   /**
    * @brief Constructor de la clase Cuento en base a un Preview
@@ -28,7 +29,7 @@ export class Cuento extends Preview {
     this._escenas = []
     this._current_scene = null
     this._current_scene_order = 0
-    this._story_generator = null // TODO: Implementar generador de historias
+    this._story_generator = new GeminiService(process.env.API_KEY!); // TODO: Implementar generador de historias
   }
 
   /**
@@ -77,7 +78,7 @@ export class Cuento extends Preview {
    * @param input Opcion escogida por el usuario
    */
 
-  public new_scene(scene: Cuento_Scene, input: string) {
+  public async new_scene(scene: Cuento_Scene, input: string) {
     if(!scene){
       return null;  
     }
@@ -86,9 +87,11 @@ export class Cuento extends Preview {
       return null;
     }
 
+    const responseText = await this._story_generator.sendMessage(input);
+
     let new_scene = create_scene({
       scene,
-      input
+      input: responseText 
     })
     this.add_scene(new_scene)
   }
