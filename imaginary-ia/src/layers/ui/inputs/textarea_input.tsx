@@ -7,8 +7,16 @@ interface TextArea_Input_Props extends Input_Props {
 }
 
 export const TextArea_Input : FC<TextArea_Input_Props> = ({className, props}) => {
-  className = className || "w-full h-52"
+  className = className || "w-full h-52 rounded-lg p-4 bg-black/5 border-2 border-solid border-white font-mono font-medium text-sm color-white placeholder-white"
+
+  props = props || {}
+  props = { ...props,
+    type: "textarea",
+    placeholder: "Describe your history here...",
+  }
+
   return (
     <Input_Base className={className} props={props} Component="textarea"/>
+    
   )
 }
