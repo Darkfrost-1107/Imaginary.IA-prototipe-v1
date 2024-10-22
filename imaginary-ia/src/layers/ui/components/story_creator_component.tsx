@@ -39,7 +39,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
             <TextArea_Input props={{
               ref:desc
             }}/>
-            <Button_Container label="Generar Cuento" onClick={() => {
+            {/* <Button_Container label="Generar Cuento" onClick={() => {
               const description = desc.current?.value
               if (!description) {
                 console.error("Descripción no proporcionada.");
@@ -63,7 +63,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
               story.new_scene(scene, description).then((scene) => {
                 console.log(scene)
               })
-            }}/>
+            }}/> */}
 
 
           </Padding_Layout>
@@ -84,6 +84,16 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
             <Text_Container text="Cantidad de Palabras por Escena" />
             <Range_Input/>
+          </Padding_Layout>
+
+          <Padding_Layout>
+            <Button_Container label="Crear Cuento" onClick={ () => {
+              let preview = new Preview({
+                id: "1",
+                titulo : "XD",
+                size : 5,
+              })
+            }}/>
           </Padding_Layout>
 
         </Panel_Layout>
