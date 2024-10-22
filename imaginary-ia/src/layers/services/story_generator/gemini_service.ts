@@ -47,9 +47,7 @@ export class GeminiService {
         this.chat = model.startChat();
     }
 
-    async sendMessage(tema: string, numEscenas: number) {
-        const prompt = ""
-
+    async sendMessage(prompt: string) {
         try {
             const result = await this.chat.sendMessage(prompt);
             return result.response.text();
