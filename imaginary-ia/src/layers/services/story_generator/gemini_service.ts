@@ -20,13 +20,16 @@ export class GeminiService {
         });
     }
 
-    async sendMessage(message: string) {
+    async sendMessage(description: string) {
+        const prompt = `Genera una escena para el cuento basado en la siguiente descripción: ${description}`;
+    
         try {
-            const result = await this.chat.sendMessage(message);
+            const result = await this.chat.sendMessage(prompt);
             return result.response.text();
         } catch (error) {
             console.error("Error al enviar mensaje:", error);
             throw new Error("Error al conectar con la API de Gemini");
         }
     }
+    
 }
