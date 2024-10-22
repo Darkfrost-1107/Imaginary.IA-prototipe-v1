@@ -108,7 +108,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
             <Dialog_Component label="Crear Cuento">
               {Dialog_Story_Creator}
             </Dialog_Component>
-            <Button_Container label="Crear Cuento" onClick={ () => {
+            {/* <Button_Container label="Crear Cuento" onClick={ () => {
               let preview = new Preview({
                 id: randomUUID(),
                 titulo : title.current?.value || "Titulo",
@@ -117,7 +117,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
               let story = new Cuento(preview)
 
-            }}/>
+            }}/> */}
           </Padding_Layout>
 
         </Panel_Layout>
