@@ -8,16 +8,19 @@ interface CheckBox_Input_Props extends Input_Props {
 
 export const CheckBox_Input: FC<CheckBox_Input_Props> = ({ className, label }) => {
   className = className || '';
-  className += " w-4 h-4"
+  className += ' w-4 h-4';
+  
   let props = {
     type: 'checkbox',
-    hidden: true,
+    className: 'hidden', 
   };
 
   return (
-      <label className="text-white gap-2 flex rounded-full bg-red-500 py-1 px-4">
-        <Input_Base props={props} className={className} />
+    <label className="text-white gap-2 flex items-center border-2 border-solid border-red-500/20 rounded-md bg-red-400 py-1 px-4 transition-colors cursor-pointer hover:bg-red-600">
+      <Input_Base props={props} className={className} />
+      <span className="flex items-center gap-2">
         {label}
-      </label>
+      </span>
+    </label>
   );
 };
