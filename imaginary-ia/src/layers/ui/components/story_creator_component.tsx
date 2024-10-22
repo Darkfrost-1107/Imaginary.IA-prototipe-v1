@@ -110,7 +110,14 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
                 return(
                   <Dialog_Story_Creator close={close} story={
                     new Cuento(
-                      
+                      new Preview(
+                        {
+                          id: "a",
+                          titulo: title.current?.value || "Titulo",
+                          size: (size.current ? +size.current.value : 3 ),
+                          synopsis: desc.current?.value || ""
+                        }
+                      )
                     )
                   } />
                 )
