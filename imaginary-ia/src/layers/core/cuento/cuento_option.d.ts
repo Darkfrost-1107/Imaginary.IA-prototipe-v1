@@ -6,12 +6,7 @@
  * @param {string} next_scene identificador de la Escena a la que se dirige
  * @param {OPTION_ACTION} action tipo de accion que se va a realizar
  */
-export type Cuento_Option = {
-  id: string
-  label: string
-  next_scene: string
-  action: OPTION_ACTION
-}
+export type Cuento_Option = string
 
 /**
  * @brief Enumeracion para las acciones de las opciones

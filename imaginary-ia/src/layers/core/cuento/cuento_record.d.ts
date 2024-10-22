@@ -10,10 +10,12 @@ import { Cuento_Image } from "./cuento_image"
  */
 
 export type Cuento_Record = {
-  id        : string
-  titulo    : string
-  size      : number
-  imagen?   : Cuento_Image
-  synopsis? : string
-  autor_id? : string
+  id          : string
+  titulo      : string
+  size        : number
+  scene_size? : number
+  imagen?     : Cuento_Image
+  synopsis?   : string
+  autor_id?   : string
+  topics?     : string
 }
