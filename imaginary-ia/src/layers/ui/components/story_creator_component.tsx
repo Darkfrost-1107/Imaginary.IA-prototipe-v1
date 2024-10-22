@@ -98,8 +98,8 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
             <Subtitle_Container title="Tiempo de Lectura"/>
             <Text_Container text="Cantidad de Escenas" />
             <Range_Input range={{
-              min: 2,
-              max: 5,
+              min: 3,
+              max: 10,
             }}  props = {{
               ref: size
             }}
@@ -107,8 +107,8 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
             <Text_Container text="Cantidad de Palabras por Escena" />
             <Range_Input range={{
-              min: 50,
-              max: 100
+              min: 75,
+              max: 150
             }} props={{
               ref: scene_size
             }}/>

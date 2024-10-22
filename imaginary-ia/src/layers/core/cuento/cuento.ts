@@ -4,6 +4,7 @@ import { create_scene } from "@/layers/services/story_generator/t_gen"
 import { create_cuento_image_binary } from "./utility"
 import { GeminiService } from "@/layers/services/story_generator/gemini_service";
 import { Cuento_Option } from "./cuento_option";
+import { Cuento_Generator } from "./cuento_generator";
 
 const PRORROG_SCENE_ID = 'PRORROG'
 
@@ -19,7 +20,7 @@ export class Cuento extends Preview {
   private _escenas: Cuento_Scene[]
   private _current_scene: Cuento_Scene
   private _current_scene_order: number
-  private _story_generator: GeminiService;
+  private _story_generator: Cuento_Generator;
 
   /**
    * @brief Constructor de la clase Cuento en base a un Preview
@@ -31,7 +32,7 @@ export class Cuento extends Preview {
     this._escenas = []
     this._current_scene = null
     this._current_scene_order = 0
-    this._story_generator = new GeminiService("AIzaSyDRoSGn9xnCtFgIQCZ74Gr6X8T3eG8iUyM"); // TODO: Implementar generador de historias
+    this._story_generator = new Cuento_Generator(record); // TODO: Implementar generador de historias
   }
 
   /**
@@ -76,7 +77,7 @@ export class Cuento extends Preview {
     return this._current_scene
   }
 
-  public async create_next_scene(option: Cuento_Option) {
+  public async create_next_scene(option: string) {
     // Verifica si se ha alcanzado el límite de escenas
     if (this._escenas.length > this._record.size) {
       console.log("No se pueden agregar más escenas.");
@@ -86,7 +87,7 @@ export class Cuento extends Preview {
     console.log("Enviando opción a la API:", option); // Muestra la opción que se está enviando
 
     // Genera una nueva escena basada en la opción seleccionada
-    const responseText = await this._story_generator.sendOptionMessage(option); // Enviar la opción a la IA
+    const responseText = await this._story_generator.new_scene(option, this._escenas.length); // Enviar la opción a la IA
     console.log("Respuesta de la API:", responseText); // Muestra la respuesta que recibes de la API
 
     try {
@@ -121,14 +122,16 @@ export class Cuento extends Preview {
    */
 
   private async new_scene() {
+
+
     // Verifica si se ha alcanzado el límite de escenas
     if (this._record.size === this._escenas.length) {
       console.log("El cuento ya tiene el número máximo de escenas.");
       return null;
     }
 
+    const responseText = await this._story_generator.new_scene(undefined, this._escenas.length)
     // Solo se manda la descripción y el tamaño la primera vez
-    const responseText = await this._story_generator.sendMessage(this._record.synopsis || "", this._record.size);
     try {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
