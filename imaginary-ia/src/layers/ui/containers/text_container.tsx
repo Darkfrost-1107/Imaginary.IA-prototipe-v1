@@ -3,7 +3,7 @@ import {FC} from 'react'
 
 interface TextProps {
   //Props
-  text: string
+  text: string | number
   className?: string
 }
 

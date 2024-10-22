@@ -5,9 +5,15 @@ import { Text_Container } from '../containers/text_container'
 
 interface Range_Input_Props extends Input_Props {
   //Props
+  range: Range_Interval
 }
 
-export const Range_Input : FC<Range_Input_Props> = ({className}) => {
+type Range_Interval = {
+  min: number
+  max: number
+}
+
+export const Range_Input : FC<Range_Input_Props> = ({className, range}) => {
   className = className || "h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed"
   
   return (
