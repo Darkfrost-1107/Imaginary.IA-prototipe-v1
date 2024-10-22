@@ -33,8 +33,11 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
   const desc = useRef<HTMLTextAreaElement>(null)
   const size = useRef<HTMLInputElement>(null)
   const title = useRef<HTMLInputElement>(null)
-  const [cuento, setCuento] = useState<Cuento_Generator>({})
+  const scene_size = useRef<HTMLInputElement>(null)
+  const topics = useRef<HTMLInputElement>(null)
 
+  const [cuento, setCuento] = useState<Cuento_Generator>({})
+  
   return (
     <Grid_Layout>
         <Panel_Layout>
@@ -82,7 +85,9 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
           <Padding_Layout>
             <Subtitle_Container title="Temática del Cuento"/>
-            <Select_Input options={Topics_List}/>
+            <Select_Input options={Topics_List} props={{
+              ref: topics
+            }} />
           </Padding_Layout>
 
         </Panel_Layout>
@@ -104,6 +109,8 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
             <Range_Input range={{
               min: 50,
               max: 100
+            }} props={{
+              ref: scene_size
             }}/>
           </Padding_Layout>
 
@@ -116,7 +123,9 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
                       id: "a",
                       titulo: title.current?.value || "Titulo",
                       size: (size.current ? +size.current.value : 3 ),
-                      synopsis: desc.current?.value || ""
+                      synopsis: desc.current?.value || "",
+                      scene_size: scene_size.current ? +scene_size.current?.value : 50,
+                      topics: topics.current?.value
                     }
                   )
                 )

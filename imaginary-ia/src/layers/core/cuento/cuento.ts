@@ -83,10 +83,10 @@ export class Cuento extends Preview {
       return null;
     }
 
-    console.log("Enviando opción a la API:", option.label); // Muestra la opción que se está enviando
+    console.log("Enviando opción a la API:", option); // Muestra la opción que se está enviando
 
     // Genera una nueva escena basada en la opción seleccionada
-    const responseText = await this._story_generator.sendOptionMessage(option.label); // Enviar la opción a la IA
+    const responseText = await this._story_generator.sendOptionMessage(option); // Enviar la opción a la IA
     console.log("Respuesta de la API:", responseText); // Muestra la respuesta que recibes de la API
 
     try {

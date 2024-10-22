@@ -74,7 +74,7 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
       <Title_Container title="Continua tu historia" />
       <Grid_Layout>
         <Panel_Layout>
-          <Image src="/logo.png" alt="" width={512} height={512} />
+          <Image src="/logo.png" alt="" width={512} height={512} className="aspect-square" />
         </Panel_Layout>
         <Panel_Layout>
           <Subtitle_Container title="Continúa tu historia" />
@@ -83,7 +83,7 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
           {currentStory.current_scene?.options.map((option, index) => (
             <Button_Container 
               key={index}
-              label={option.label}
+              label={option}
               onClick={() => handleOptionSelect(option)}
             />
           ))}
