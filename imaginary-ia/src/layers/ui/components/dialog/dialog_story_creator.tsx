@@ -18,7 +18,7 @@ interface Dialog_Component_Props {
 export const Dialog_Story_Creator : FC<Dialog_Component_Props> = ({close, story}) => {
 
   const [currentStory, updateStory] = useState<Cuento>(story)
-  // story.start()
+  story.new_scene()
   useEffect(() => {}, [story])
   const [currentScene, updateScene] = useState<Cuento_Scene>()
 
