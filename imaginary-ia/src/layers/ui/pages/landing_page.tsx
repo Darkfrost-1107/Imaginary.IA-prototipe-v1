@@ -7,7 +7,7 @@ interface PageProps {
 export const Landing_Page: FC<PageProps> = () => {
   return (
     <div className="text-gray-300 container mx-auto p-8 overflow-hidden md:rounded-lg md:p-10 lg:p-12">
-      <Header_Component />
+      <Header_Component />  
       <div className="h-40 md:h-20"></div>
       <div className="grid gap-8 md:grid-cols-3">
         <div className="col-span-2">
@@ -25,7 +25,7 @@ export const Landing_Page: FC<PageProps> = () => {
         </div>
         <img src="/image.png" alt="Imaginary Logo" width={500} height={500}/>
       </div>
-      <div className="h-32 md:h-40"></div>
+      <div className="h-32 md:h-20"></div>
 
       <div className="grid gap-8 md:grid-cols-2">
         <div>
@@ -120,14 +120,16 @@ export const Landing_Page: FC<PageProps> = () => {
       </div>
 
       {/* crear div con 2 columnas de dos botones se colocara 2 enlaces */}
-      <div className="">
+      <div className="h-32 md:h-40 p-10">
+        <p className="text-center font-serif text-3xl">Ayudanos a mejorar!!</p>
+        <p className="text-center font-serif text-2xl">Completa las encuestas</p>
       <div className="grid gap-8 md:grid-cols-2">
         <div className="flex justify-center">
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSd7WoTQ9TBfAoog0qsOTxVmS8E1qSBizMzZpLwqwfjSKzCg-g/viewform"
             className="flex items-center justify-center w-48 h-16 text-xl font-semibold text-white bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
           >
-            Encuesta 1
+            Sobre ti
           </a>
         </div>
         <div className="flex justify-center">
@@ -135,7 +137,7 @@ export const Landing_Page: FC<PageProps> = () => {
             href="https://docs.google.com/forms/d/e/1FAIpQLSfKZG6K2G2arydsVz078xeqQNBmZCQ9rxrPvgBrYreJX17Jdw/viewform"
             className="flex items-center justify-center w-48 h-16 text-xl font-semibold text-white bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
           >
-            Encuesta 2
+            Calificanos
           </a>
         </div>
       </div>
