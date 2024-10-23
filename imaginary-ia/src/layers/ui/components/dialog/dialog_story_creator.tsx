@@ -16,7 +16,7 @@ interface Dialog_Component_Props {
 
 const BookContainer = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative bg-amber-200 max-w-2xl w-full rounded-lg shadow-2xl">
+    <div className="relative bg-amber-200 max-w-5xl w-full rounded-lg shadow-2xl">
       <div className="absolute -left-2 top-0 bottom-0 w-2 bg-amber-900 rounded-l" />
       <div className="absolute -right-2 top-0 bottom-0 w-2 bg-amber-800 rounded-r" />
       
@@ -29,7 +29,7 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         
-        <div className="prose prose-amber max-w-none text-black">
+        <div className="prose prose-amber max-w-none text-black text-justify font-serif">
           {children}
         </div>
         
@@ -76,10 +76,10 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
         <Panel_Layout>
           <Image src="/logo.png" alt="" width={512} height={512} className="aspect-square" />
         </Panel_Layout>
-        <Panel_Layout>
-          <Subtitle_Container title="Continúa tu historia" />
+        <Panel_Layout className='p-2 m-2'>
+          {/* <Subtitle_Container title="Continúa tu historia" /> */}
           <Text_Container text={currentStory.current_scene?.content || "Historia no disponible"} />
-          <div className="flex flex-wrap justify-center">
+          <div className="pt-3 flex flex-wrap justify-center m-2 gap-3">
           {currentStory.current_scene?.options.map((option, index) => (
             <Button_Container 
               key={index}
