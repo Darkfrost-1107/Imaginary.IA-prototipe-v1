@@ -109,6 +109,23 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
               }}
             /> : null
           }
+          { (currentStory.current_scene?.options.length == 0 && currentStory.escenas.length < 3) ?
+            <Button_Container 
+              label="Guardar como plantilla"
+              onClick={() => {
+                function handler(status: OPERATION_STATUS, message: string) {
+                  if(status = OPERATION_STATUS.SUCCESS) {
+                    close()
+                  } else {
+                    if(confirm("ocurrio un error\n ¿Quiere cerrar Cuento?")){
+                      close()
+                    }
+                  }
+                }
+                story.save_story(handler);
+              }}
+            /> : null
+          }
         </div>
         </Panel_Layout>
       </Grid_Layout>
