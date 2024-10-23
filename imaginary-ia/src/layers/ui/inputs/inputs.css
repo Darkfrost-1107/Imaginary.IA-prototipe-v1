@@ -1,7 +1,9 @@
 @tailwind components;
 
 @layer components {
-  
+  textarea{
+    resize: none
+  }
 }
 
   
