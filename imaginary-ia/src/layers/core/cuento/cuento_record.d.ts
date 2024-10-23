@@ -16,6 +16,5 @@ export type Cuento_Record = {
   scene_size? : number
   imagen?     : Cuento_Image
   synopsis?   : string
-  autor_id?   : string
   topics?     : string
 }

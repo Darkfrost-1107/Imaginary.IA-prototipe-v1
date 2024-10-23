@@ -9,6 +9,7 @@ import { Select_Input } from '../inputs/select_input'
 import { Range_Input } from '../inputs/range_input'
 import { Text_Container } from '../containers/text_container'
 import { Story_Creator_Component } from '../components/story_creator_component'
+import { Header_Component } from '../components/common/header_component'
 interface PageProps {
   //Props
 }
@@ -17,8 +18,7 @@ interface PageProps {
 export const Create_Story_Page : FC<PageProps> = () => {
   return (
     <div>
-      <div className="h-1"></div>
-      <Logo_Container/>
+      <Header_Component />
 
       <Title_Layout>
         <Title_Container title="Imaginary.AI" className="font-pixelify text-5xl font-bold"/>

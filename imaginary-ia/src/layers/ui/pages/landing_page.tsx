@@ -38,7 +38,7 @@ export const Landing_Page: FC<PageProps> = () => {
 
       <div className="grid gap-8 md:grid-cols-2">
         <div>
-          <div className="-ml-24 rounded-lg md:rounded-r-full bg-gradient-to-bl from-gray-900 to-black h-96"></div>
+          <div className="-ml-24 rounded-lg md:rounded-r-full bg-gradient-to-bl from-[#221133] to-black h-96"></div>
         </div>
 
         <div className="flex flex-col justify-center">

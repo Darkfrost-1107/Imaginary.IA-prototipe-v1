@@ -11,9 +11,8 @@ export default function handler(
   res.status(200).json({ message: 'Hello from Next.js!' })
 }
 
-export async function GET(
-  req: Request,
-){
+export async function GET(){
+
   const data = {
     "Hello": "World"
   }

@@ -1,0 +1,5 @@
+export enum OPERATION_STATUS {
+  INVALID_DATA,
+  SUCCESS,
+  FAILURE,
+}

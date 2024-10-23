@@ -32,4 +32,8 @@ export class Preview{
   public get record() {
     return this._record
   }
+
+  public is_valid() {
+    return true;
+  }
 }
