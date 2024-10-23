@@ -60,6 +60,7 @@ export async function GET(
       data: templates
     }) 
   } catch (error) {
+    console.log(error)
     return Response.json({
       message: "Error al obtener los cuentos",
       status: OPERATION_STATUS.FAILURE,

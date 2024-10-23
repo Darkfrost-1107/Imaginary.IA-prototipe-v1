@@ -2,7 +2,9 @@ import { GeminiService } from "@/layers/services/story_generator/gemini_service"
 import { Preview } from "./preview";
 
 const GeminiKEYs = [
-  "AIzaSyDRoSGn9xnCtFgIQCZ74Gr6X8T3eG8iUyM"
+  "AIzaSyDRoSGn9xnCtFgIQCZ74Gr6X8T3eG8iUyM",
+  "AIzaSyDXRk8_gYxN-5uNmPHy4uUgbXkzNA36XiA",
+  "AIzaSyCUQ9q7WreDhoN-ss6QKr0eLjM2OO4EPPQ",
 ];
 
 const ban_list : string[] = [
