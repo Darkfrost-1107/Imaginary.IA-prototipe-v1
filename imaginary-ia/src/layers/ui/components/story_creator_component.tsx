@@ -85,6 +85,8 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
 
           {/* <Padding_Layout>
             <Subtitle_Container title="Temática del Cuento" className='font-pixelify text-3xl pb-1'/>
+          <Padding_Layout>
+            <Subtitle_Container title="Temática del Cuento" className='font-pixelify text-3xl'/>
             <Select_Input options={Topics_List} props={{
               ref: topics
             }} />

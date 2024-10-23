@@ -9,9 +9,25 @@ interface CProps {
 
 export const Header_Component : FC<CProps> = () => {
   return (
-    <header>
-      <div className="h-16 m-2"></div>
-      <Logo_Container/>
+    <header className="flex justify-between items-center p-8 text-white">
+      <div className="flex items-center">
+        <Logo_Container />
+      </div>
+      
+      <nav>
+        <ul className="flex space-x-4 gap-8">
+          <li>
+            <a href="/" className="hover:underline font-serif">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/list_cuento" className="hover:underline font-serif">
+              Listar Cuentos
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
   )
 }
