@@ -1,7 +1,6 @@
 import { Cuento_Scene } from "./cuento_scene"
 import { Preview } from "./preview"
 import { create_scene } from "@/layers/services/story_generator/t_gen"
-import { create_cuento_image_binary } from "./utility"
 import { GeminiService } from "@/layers/services/story_generator/gemini_service";
 import { Cuento_Option } from "./cuento_option";
 import { Cuento_Generator } from "./cuento_generator";

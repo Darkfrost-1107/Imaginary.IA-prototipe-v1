@@ -11,6 +11,8 @@ if(process.env.NODE_ENV === 'production') {
   })
   const adapter = new PrismaLibSQL(libsql)
   prisma = new PrismaClient({adapter})
+} else {
+  
 }
 
 export default prisma
