@@ -15,7 +15,7 @@ export const Panel_Layout : FC<Panel_Layout_Props> = ({className, children}) => 
 }
 
 export const Padding_Layout : FC<Panel_Layout_Props> = ({className, children}) => {
-  className = className || "p-5 m-1"
+  className = className || "p-5"
   return (
     <div className={className}>
       {children}
