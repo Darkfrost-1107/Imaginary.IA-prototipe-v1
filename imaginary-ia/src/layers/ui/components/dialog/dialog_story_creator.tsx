@@ -73,8 +73,12 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
     <BookContainer>
       <Title_Container title="Continua tu historia" />
       <Grid_Layout>
-      <Panel_Layout>
-            <Image src="/logo.png" alt="Cargando..." width={512} height={512} className="aspect-square" />
+        <Panel_Layout>
+          {(story.record.imagen?.status) ? 
+            <Image src={story.record.imagen?.url || "/logo.png"} alt="Cargando..." width={512} height={512} className="aspect-square" />
+          :
+            <Text_Container text="Cargando Imagen" />
+          } 
         </Panel_Layout>
         <Panel_Layout className='p-2 m-2'>
           {/* <Subtitle_Container title="Continúa tu historia" /> */}

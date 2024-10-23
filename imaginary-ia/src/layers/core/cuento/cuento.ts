@@ -103,9 +103,6 @@ export class Cuento extends Preview {
         id: this._escenas.length.toString(),
         order: this._escenas.length,
         content: content,
-        image: {
-          url: ""
-        },
         options: options
       };
 
@@ -138,9 +135,6 @@ export class Cuento extends Preview {
         id: this._escenas.length.toString(),
         order: this._escenas.length,
         content: content,
-        image: {
-          url: ""
-        },
         options: options
       };
 
@@ -163,8 +157,8 @@ export class Cuento extends Preview {
         const imageUrl = await create_and_upload_image(content);
         console.log("Imagen generada:", imageUrl);
         // Asegúrate de que la escena no sea null antes de actualizarla
-        if (scene) {
-            scene.image.url = imageUrl;
+        if (this._record.imagen) {
+            this._record.imagen.url = imageUrl;
             // Aquí puedes llamar a un método para notificar a la UI que la escena ha sido actualizada
         }
     } catch (error) {

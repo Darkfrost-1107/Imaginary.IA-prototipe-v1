@@ -1,4 +1,4 @@
-const apiToken = ''; // d410af75-4e5c-4619-87b1-e62a71be39c0
+const apiToken = ''; // "d410af75-4e5c-4619-87b1-e62a71be39c0"
 const modelId = 'e71a1c2f-4f80-4800-934f-2c68979d8cc8';
 
 async function startGeneration(input: string) {

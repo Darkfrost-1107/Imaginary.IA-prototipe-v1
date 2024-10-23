@@ -5,6 +5,7 @@
 
 export type Cuento_Image = {
   url: string
+  status: boolean
 }
 
 

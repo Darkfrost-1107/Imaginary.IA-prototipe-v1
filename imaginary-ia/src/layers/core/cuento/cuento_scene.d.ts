@@ -12,6 +12,6 @@ export type Cuento_Scene = {
   id: string
   order: number
   content: string
-  image: Cuento_Image
+  // image: Cuento_Image
   options: Cuento_Option[]
 } | null

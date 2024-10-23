@@ -1,3 +1,4 @@
+import Page from "@/app/create_cuento/page"
 import { Preview } from "@/layers/core/cuento/preview"
 import prisma from "@/layers/services/database_connector/prisma"
 import { OPERATION_STATUS } from "@/layers/services/status"
@@ -38,9 +39,21 @@ export async function POST(
   return Response.json({data})
 }
 
-export async function GET(){
+const Page_Size = 3
+
+export async function GET(
+  req: NextRequest
+){
+
+  const params = req.nextUrl.searchParams
+  let p = params.get("page") 
+  const page : number = p? +p : 0
+
   try{
-    const templates = await prisma.template.findMany()
+    const templates = await prisma.template.findMany({
+      skip: page || 0,
+      take: Page_Size
+    })
     return Response.json({
       message: "Operacion exitosa",
       status: OPERATION_STATUS.SUCCESS,
