@@ -8,7 +8,6 @@ import { Grid_Layout } from '../../layouts/grid_layout';
 import { Panel_Layout } from '../../layouts/panel_layout';
 import { Text_Container } from '../../containers/text_container';
 import { Button_Container } from '../../containers/button_container';
-import { create_and_upload_image } from '@/layers/services/image_generator/i_gen';
 
 interface Dialog_Component_Props {
   close: () => void;
@@ -47,20 +46,15 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
 
 export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story }) => {
   const [currentStory, updateStory] = useState<Cuento>(story);
-  const [imageUrl, setImageUrl] = useState<string | null>(null); // Estado para la URL de la imagen
   const hasStartedRef = useRef(false); 
 
   useEffect(() => {
     if (currentStory.current_scene == null && !hasStartedRef.current) {
-      currentStory.start().then(async () => {
-        // Espera a que la primera escena esté lista
-        const firstScene = currentStory.current_scene;
-        if (firstScene) {
-          const url = await create_and_upload_image(firstScene.content); // Genera la imagen
-          setImageUrl(url); // Actualiza el estado con la URL de la imagen
-        }
+      
+      currentStory.start().then(() => {
         updateStory(Object.assign(Object.create(Object.getPrototypeOf(currentStory)), currentStory));
       });
+      console.log(currentStory);
       hasStartedRef.current = true;
     }
   }, [currentStory]);
@@ -74,24 +68,13 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
     await currentStory.create_next_scene(option);
     updateStory(Object.assign(Object.create(Object.getPrototypeOf(currentStory)), currentStory));
   };
-
-
+  
   return (
     <BookContainer>
       <Title_Container title="Continua tu historia" />
       <Grid_Layout>
       <Panel_Layout>
-          {imageUrl ? ( // Muestra la imagen generada
-            <Image 
-              src={imageUrl}
-              alt="Escena de la historia"
-              width={512}
-              height={512}
-              className="aspect-square"
-            />
-          ) : (
             <Image src="/logo.png" alt="Cargando..." width={512} height={512} className="aspect-square" />
-          )}
         </Panel_Layout>
         <Panel_Layout className='p-2 m-2'>
           {/* <Subtitle_Container title="Continúa tu historia" /> */}
