@@ -32,4 +32,8 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
   }
+
+  #info_container > div{
+    @apply bg-gradient-to-br from-gray-900 to-[#221133]
+  }
 }

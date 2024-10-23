@@ -86,8 +86,8 @@ export const Landing_Page: FC<PageProps> = () => {
 
       <div className="h-32 md:h-40"></div>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        <div className="flex-col p-8 py-16 rounded-lg shadow-2xl md:p-12 bg-gradient-to-br from-gray-900 to-black">
+      <div id="info_container" className="grid gap-4 md:grid-cols-3">
+        <div className="flex-col p-8 py-16 rounded-lg shadow-2xl md:p-12">
           <p className="flex items-center justify-center text-4xl font-semibold text-green-400 bg-green-800 rounded-full shadow-lg w-14 h-14">
             1
           </p>
