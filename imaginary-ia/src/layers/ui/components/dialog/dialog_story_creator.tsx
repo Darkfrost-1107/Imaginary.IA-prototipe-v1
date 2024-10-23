@@ -13,7 +13,7 @@ import { OPERATION_STATUS } from '@/layers/services/status';
 interface Dialog_Component_Props {
   close: () => void;
   story: Cuento;
-  create?: boolean
+  create: boolean
 }
 
 const BookContainer = ({ children }: { children: React.ReactNode }) => {
@@ -47,14 +47,13 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story, create }) => {
-  create = create || true
   const [currentStory, updateStory] = useState<Cuento>(story);
   const hasStartedRef = useRef(false); 
 
   useEffect(() => {
     if (currentStory.current_scene == null && !hasStartedRef.current) {
       
-      currentStory.start().then(() => {
+      currentStory.start(create).then(() => {
         updateStory(Object.assign(Object.create(Object.getPrototypeOf(currentStory)), currentStory));
       });
       console.log(currentStory);

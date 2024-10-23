@@ -63,10 +63,10 @@ export class Cuento extends Preview {
    * @returns {Cuento_Scene} primera escena del cuento
    */
 
-  public async start() {
+  public async start(new_i: boolean) {
     console.log("Iniciando cuento...");
     if (this._escenas.length === 0) {
-      return this.new_scene();
+      return this.new_scene(new_i);
     }
     return this;
   }
@@ -123,7 +123,7 @@ export class Cuento extends Preview {
    * @param input Opcion escogida por el usuario
    */
 
-  private async new_scene() {
+  private async new_scene(new_i: boolean) {
 
     const responseText = await this._story_generator.new_scene(undefined, this._escenas.length)
     // Solo se manda la descripción y el tamaño la primera vez
@@ -131,7 +131,11 @@ export class Cuento extends Preview {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
       
-      const imageUrl = await create_and_upload_image(content);
+      let imageUrl = this._record.imagen?.url || ""
+      
+      if(new_i){
+        imageUrl = await create_and_upload_image(content);
+      }
 
       const new_scene: Cuento_Scene = {
         id: this._escenas.length.toString(),
@@ -141,7 +145,7 @@ export class Cuento extends Preview {
       };
 
       this._record.imagen = {
-        url: imageUrl || "",
+        url: imageUrl,
         status: true
       }
 
