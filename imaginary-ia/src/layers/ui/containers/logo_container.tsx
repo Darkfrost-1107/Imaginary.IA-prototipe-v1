@@ -8,7 +8,9 @@ interface LogoProps {
 export const Logo_Container : FC<LogoProps> = () => {
   return (
   <div className="absolute top-0 left-0">
-    <Image src="/logo.svg" alt="Imaginary Logo" width={220} height={100}/>
+    <a href="/">
+      <Image src="/logo.svg" alt="Imaginary Logo" width={220} height={100}/>
+    </a>
   </div>
   )
 }

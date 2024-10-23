@@ -8,7 +8,7 @@ interface TextArea_Input_Props extends Input_Props {
 
 export const TextArea_Input : FC<TextArea_Input_Props> = ({className, props}) => {
   className = className || ""
-  className += " w-full h-32 rounded-lg p-4 bg-black/5 border-2 border-dashed border-white font-mono font-medium text-sm color-white placeholder-white"
+  className += " w-full h-20 rounded-lg p-4 bg-black/5 border-2 border-dashed border-white font-mono font-medium text-sm color-white placeholder-white"
 
   props = props || {}
   props = { ...props,
