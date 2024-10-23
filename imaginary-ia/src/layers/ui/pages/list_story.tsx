@@ -22,7 +22,7 @@ export const List_Story_Page: FC<PageProps> = () => {
           className="font-pixelify text-5xl font-bold"
         />
         <Subtitle_Container
-          title="Mis Cuentos Generados"
+          title="Plantillas Guardadas"
           className="font-pixelify "
         />
       </Title_Layout>

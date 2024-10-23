@@ -28,7 +28,7 @@ export const Header_Component : FC<CProps> = () => {
           </li>
           <li>
             <a href="/list_cuento" className="hover:no-underline font-serif">
-              Listar Cuentos
+              Buscar Plantillas
             </a>
           </li>
         </ul>
