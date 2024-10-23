@@ -17,6 +17,5 @@ export async function GET(
   const data = {
     "Hello": "World"
   }
- 
   return Response.json({ data })
 }
