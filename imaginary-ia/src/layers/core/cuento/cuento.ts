@@ -148,7 +148,7 @@ export class Cuento extends Preview {
       this._current_scene = new_scene; // Establece la escena actual
       this._current_scene_order += 1; // Incrementa el orden de la escena actual
 
-      //this.generateAndSetImage(new_scene, content);
+      this.generateAndSetImage(new_scene, content);
 
       return new_scene; // Devuelve la nueva escena
     } catch (error) {
@@ -161,6 +161,7 @@ export class Cuento extends Preview {
   private async generateAndSetImage(scene: Cuento_Scene, content: string) {
     try {
         const imageUrl = await create_and_upload_image(content);
+        console.log("Imagen generada:", imageUrl);
         // Asegúrate de que la escena no sea null antes de actualizarla
         if (scene) {
             scene.image.url = imageUrl;
