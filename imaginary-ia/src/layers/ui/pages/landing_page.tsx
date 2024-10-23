@@ -1,5 +1,5 @@
 import { FC } from "react";
-
+import { Header_Component } from "../components/common/header_component";
 interface PageProps {
   //Props
 }
@@ -7,17 +7,8 @@ interface PageProps {
 export const Landing_Page: FC<PageProps> = () => {
   return (
     <div className="text-gray-300 container mx-auto p-8 overflow-hidden md:rounded-lg md:p-10 lg:p-12">
-      <div className="flex justify-between">
-        <h1 className="font-serif text-3xl font-medium">Landing</h1>
-        <a
-          href="/create_cuento"
-          className="self-start px-3 py-2 leading-none text-gray-200 border border-gray-800 rounded-lg focus:outline-none focus:shadow-outline bg-gradient-to-b hover:from-indigo-500 from-gray-900 to-black"
-        >
-          Crear cuento
-        </a>
-      </div>
-
-      <div className="h-32 md:h-40"></div>
+      <Header_Component />  
+      <div className="h-40 md:h-20"></div>
       <div className="grid gap-8 md:grid-cols-3">
         <div className="col-span-2">
         <p className="font-sans text-4xl font-bold text-gray-200 max-w-5xl lg:text-7xl lg:pr-24 md:text-6xl">
@@ -34,11 +25,11 @@ export const Landing_Page: FC<PageProps> = () => {
         </div>
         <img src="/image.png" alt="Imaginary Logo" width={500} height={500}/>
       </div>
-      <div className="h-32 md:h-40"></div>
+      <div className="h-32 md:h-20"></div>
 
       <div className="grid gap-8 md:grid-cols-2">
         <div>
-          <div className="-ml-24 rounded-lg md:rounded-r-full bg-gradient-to-bl from-[#221133] to-black h-96"></div>
+          <div className="-ml-24 rounded-lg md:rounded-r-full bg-gradient-to-bl from-[#211032] to-black h-96"></div>
         </div>
 
         <div className="flex flex-col justify-center">
@@ -126,6 +117,30 @@ export const Landing_Page: FC<PageProps> = () => {
             tenga la oportunidad de aprender y crecer plenamente.
           </p>
         </div>
+      </div>
+
+      {/* crear div con 2 columnas de dos botones se colocara 2 enlaces */}
+      <div className="h-32 md:h-40 p-10">
+        <p className="text-center font-serif text-3xl">Ayudanos a mejorar!!</p>
+        <p className="text-center font-serif text-2xl">Completa las encuestas</p>
+      <div className="grid gap-8 md:grid-cols-2">
+        <div className="flex justify-center">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd7WoTQ9TBfAoog0qsOTxVmS8E1qSBizMzZpLwqwfjSKzCg-g/viewform"
+            className="flex items-center justify-center w-48 h-16 text-xl font-semibold text-white bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
+          >
+            Sobre ti
+          </a>
+        </div>
+        <div className="flex justify-center">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfKZG6K2G2arydsVz078xeqQNBmZCQ9rxrPvgBrYreJX17Jdw/viewform"
+            className="flex items-center justify-center w-48 h-16 text-xl font-semibold text-white bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
+          >
+            Calificanos
+          </a>
+        </div>
+      </div>
       </div>
 
       <footer className="flex flex-col space-y-10 justify-center m-10">
