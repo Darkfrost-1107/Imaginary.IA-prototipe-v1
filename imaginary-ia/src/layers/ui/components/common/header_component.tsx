@@ -17,12 +17,17 @@ export const Header_Component : FC<CProps> = () => {
       <nav>
         <ul className="flex space-x-4 gap-8">
           <li>
-            <a href="/" className="hover:underline font-serif">
+            <a href="/" className="hover:no-underline font-serif">
               Home
             </a>
           </li>
           <li>
-            <a href="/list_cuento" className="hover:underline font-serif">
+            <a href="/create_cuento" className="hover:no-underline font-serif">
+              Crear Cuento
+            </a>
+          </li>
+          <li>
+            <a href="/list_cuento" className="hover:no-underline font-serif">
               Listar Cuentos
             </a>
           </li>

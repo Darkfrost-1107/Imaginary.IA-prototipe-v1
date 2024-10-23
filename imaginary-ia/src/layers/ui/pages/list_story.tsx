@@ -6,6 +6,7 @@ import {
 } from "../containers/title_container";
 import { Title_Layout } from "../layouts/title_layout";
 import { Story_Template_Viewer } from "../components/story_template_viewer";
+import { Header_Component } from "../components/common/header_component";
 interface PageProps {
   //Props
 }
@@ -13,6 +14,7 @@ interface PageProps {
 export const List_Story_Page: FC<PageProps> = () => {
   return (
     <div>
+    <Header_Component />
       <div className="h-1"></div>
       <Logo_Container />
 
