@@ -5,6 +5,7 @@ import { create_cuento_image_binary } from "./utility"
 import { GeminiService } from "@/layers/services/story_generator/gemini_service";
 import { Cuento_Option } from "./cuento_option";
 import { Cuento_Generator } from "./cuento_generator";
+import { create_and_upload_image } from "@/layers/services/image_generator/i_gen";
 
 const PRORROG_SCENE_ID = 'PRORROG'
 
@@ -41,6 +42,10 @@ export class Cuento extends Preview {
 
   public get current_scene() {
     return this._current_scene
+  }
+
+  public get escenas() {
+    return this._escenas
   }
 
   /**
@@ -123,13 +128,6 @@ export class Cuento extends Preview {
 
   private async new_scene() {
 
-
-    // Verifica si se ha alcanzado el límite de escenas
-    // if (this._record.size === this._escenas.length) {
-    //   console.log("El cuento ya tiene el número máximo de escenas.");
-    //   return null;
-    // }
-
     const responseText = await this._story_generator.new_scene(undefined, this._escenas.length)
     // Solo se manda la descripción y el tamaño la primera vez
     try {
@@ -149,6 +147,9 @@ export class Cuento extends Preview {
       this.add_scene(new_scene);
       this._current_scene = new_scene; // Establece la escena actual
       this._current_scene_order += 1; // Incrementa el orden de la escena actual
+
+      //this.generateAndSetImage(new_scene, content);
+
       return new_scene; // Devuelve la nueva escena
     } catch (error) {
       console.error("Error al parsear la respuesta JSON:", error);
@@ -156,6 +157,19 @@ export class Cuento extends Preview {
     }
   }
 
+  // Función para generar la imagen y actualizar la escena
+  private async generateAndSetImage(scene: Cuento_Scene, content: string) {
+    try {
+        const imageUrl = await create_and_upload_image(content);
+        // Asegúrate de que la escena no sea null antes de actualizarla
+        if (scene) {
+            scene.image.url = imageUrl;
+            // Aquí puedes llamar a un método para notificar a la UI que la escena ha sido actualizada
+        }
+    } catch (error) {
+        console.error("Error al generar la imagen:", error);
+    }
+  }
 
   public save_story(){
 
