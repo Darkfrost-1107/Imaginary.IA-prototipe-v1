@@ -9,7 +9,7 @@ export const Logo_Container : FC<LogoProps> = () => {
   return (
   <div className="absolute top-0 left-0">
     <a href="/">
-      <Image src="/logo.svg" alt="Imaginary Logo" width={220} height={100}/>
+      <Image src="/logo2.png" alt="Imaginary Logo" width={220} height={100}/>
     </a>
   </div>
   )
