@@ -117,7 +117,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
           </Padding_Layout>
 
           <Padding_Layout>
-            <Dialog_Component   label="Crear Cuento">
+            <Dialog_Component label="Crear Cuento">
               {({close} : {close: () => void}) => {
                 let story = new Cuento(
                   new Preview(
@@ -132,7 +132,7 @@ export const Story_Creator_Component : FC<Story_Creator_Props> = () => {
                   )
                 )
                 return(
-                  <Dialog_Story_Creator close={close} story={story} />
+                  <Dialog_Story_Creator close={close} story={story} create={true} />
                 )
               }
               }

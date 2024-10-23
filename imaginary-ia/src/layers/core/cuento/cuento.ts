@@ -131,7 +131,7 @@ export class Cuento extends Preview {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
       
-      const imageUrl = "" //await create_and_upload_image(content);
+      const imageUrl = await create_and_upload_image(content);
 
       const new_scene: Cuento_Scene = {
         id: this._escenas.length.toString(),

@@ -5,7 +5,7 @@ interface DialogProps {
   //Props
   label: string
   children : any
-  className: string
+  className?: string
 }
 
 export const Dialog_Component : FC<DialogProps> = ({label, children, className}) => {

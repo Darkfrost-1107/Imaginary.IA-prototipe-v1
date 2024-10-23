@@ -13,6 +13,7 @@ import { OPERATION_STATUS } from '@/layers/services/status';
 interface Dialog_Component_Props {
   close: () => void;
   story: Cuento;
+  create?: boolean
 }
 
 const BookContainer = ({ children }: { children: React.ReactNode }) => {
@@ -45,7 +46,8 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story }) => {
+export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story, create }) => {
+  create = create || true
   const [currentStory, updateStory] = useState<Cuento>(story);
   const hasStartedRef = useRef(false); 
 
@@ -92,7 +94,7 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
               onClick={() => handleOptionSelect(option)}
             />
           ))}
-          { (currentStory.current_scene?.options.length == 0) ?
+          { (create && currentStory.current_scene?.options.length == 0) ?
             <Button_Container 
               label="Guardar como plantilla"
               onClick={() => {
@@ -109,18 +111,12 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
               }}
             /> : null
           }
-          { (currentStory.current_scene?.options.length == 0 && currentStory.escenas.length < 3) ?
+          { (create && currentStory.current_scene?.options.length == 0 && currentStory.escenas.length < 2) ?
             <Button_Container 
-              label="Guardar como plantilla"
+              label="Cerrar Cuento"
               onClick={() => {
                 function handler(status: OPERATION_STATUS, message: string) {
-                  if(status = OPERATION_STATUS.SUCCESS) {
-                    close()
-                  } else {
-                    if(confirm("ocurrio un error\n ¿Quiere cerrar Cuento?")){
-                      close()
-                    }
-                  }
+                  close()
                 }
                 story.save_story(handler);
               }}

@@ -1,6 +1,8 @@
 import { Preview } from '@/layers/core/cuento/preview'
 import {FC} from 'react'
 import { Dialog_Component } from '../components/dialog/dialog_component'
+import { Cuento } from '@/layers/core/cuento/cuento'
+import { Dialog_Story_Creator } from '../components/dialog/dialog_story_creator'
 
 interface Preview_Props {
   //Props
@@ -26,9 +28,13 @@ export const Preview_Card_Container : FC<Preview_Props> = ({preview}) => {
           label="Ver Cuento"
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          {(close : () => void) => {
-
-          }}
+          {({close} : {close: () => void}) => {
+                let story = new Cuento( preview )
+                return(
+                  <Dialog_Story_Creator close={close} story={story} create={false} />
+                )
+              }
+              }
         </Dialog_Component>
         <a
           href="#"
