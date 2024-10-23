@@ -29,7 +29,7 @@ const BookContainer = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         
-        <div className="prose prose-amber max-w-none text-black text-justify font-serif">
+        <div className="prose prose-amber max-w-none text-black text-justify font-serif min-h-96">
           {children}
         </div>
         
@@ -73,16 +73,16 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
     <BookContainer>
       <Title_Container title="Continua tu historia" />
       <Grid_Layout>
-        <Panel_Layout>
+        <Panel_Layout className='p-2 m-2'>
           {(story.record.imagen?.status) ? 
-            <Image src={story.record.imagen?.url || "/logo.png"} alt="Cargando..." width={512} height={512} className="aspect-square" />
+            <Image src={story.record.imagen?.url || "/logo.png"} alt="Cargando..." width={512} height={512} />
           :
-            <Text_Container text="Cargando Imagen" />
+            <Text_Container text="Cargando Imagen" className='w-[512] h-[512]' />
           } 
         </Panel_Layout>
         <Panel_Layout className='p-2 m-2'>
           {/* <Subtitle_Container title="Continúa tu historia" /> */}
-          <Text_Container text={currentStory.current_scene?.content || "Historia no disponible"} />
+          <Text_Container text={currentStory.current_scene?.content || "Cargando Cuento, sea paciente (aproximadamente 15 segundos de delay) ..."} />
           <div className="pt-3 flex flex-wrap justify-center m-2 gap-3">
           {currentStory.current_scene?.options.map((option, index) => (
             <Button_Container 

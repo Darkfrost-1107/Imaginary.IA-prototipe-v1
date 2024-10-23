@@ -130,6 +130,8 @@ export class Cuento extends Preview {
     try {
       const jsonResponse = JSON.parse(responseText);
       const { content, options } = jsonResponse.scene;
+      
+      const imageUrl = "" //await create_and_upload_image(content);
 
       const new_scene: Cuento_Scene = {
         id: this._escenas.length.toString(),
@@ -138,11 +140,15 @@ export class Cuento extends Preview {
         options: options
       };
 
+      this._record.imagen = {
+        url: imageUrl || "",
+        status: true
+      }
+
       this.add_scene(new_scene);
       this._current_scene = new_scene; // Establece la escena actual
       this._current_scene_order += 1; // Incrementa el orden de la escena actual
 
-      this.generateAndSetImage(new_scene, content);
 
       return new_scene; // Devuelve la nueva escena
     } catch (error) {
@@ -167,7 +173,14 @@ export class Cuento extends Preview {
   }
 
   public save_story(){
-
+    const url = ""
+    const r = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this._record)
+    })
   }
 }
 // export class Cuento {

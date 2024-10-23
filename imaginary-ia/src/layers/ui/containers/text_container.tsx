@@ -9,6 +9,7 @@ interface TextProps {
 
 export const Text_Container : FC<TextProps> = ({text, className}) => {
   className = className || ""
+  className += ""
   
   return (
   <div className={className}>
