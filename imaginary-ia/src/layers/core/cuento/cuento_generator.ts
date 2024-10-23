@@ -5,6 +5,10 @@ const GeminiKEYs = [
   "AIzaSyDRoSGn9xnCtFgIQCZ74Gr6X8T3eG8iUyM"
 ]
 
+const ban_list : string[] = [
+
+]
+
 export class Cuento_Generator {
   private _chat : GeminiService
   private _scene_number : number
@@ -51,6 +55,10 @@ export class Cuento_Generator {
     }
   
     return prompt
+  }
+
+  public is_valid(prompt: string){
+    return !ban_list.some(word => prompt.includes(word))
   }
 }
 
