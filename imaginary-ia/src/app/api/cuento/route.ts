@@ -12,7 +12,7 @@ export async function POST(
   const data = await req.json()
   let preview = new Preview(data)
 
-  if(preview.is_valid() == false){
+  if(preview.is_valid()){
     let template = await prisma.template.create({
       data:{
         titulo: preview.record.titulo,
@@ -36,7 +36,7 @@ export async function POST(
     })
   }
 
-  return Response.json({data})
+  // return Response.json({data})
 }
 
 const Page_Size = 3

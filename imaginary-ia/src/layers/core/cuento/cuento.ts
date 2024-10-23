@@ -6,6 +6,7 @@ import { GeminiService } from "@/layers/services/story_generator/gemini_service"
 import { Cuento_Option } from "./cuento_option";
 import { Cuento_Generator } from "./cuento_generator";
 import { create_and_upload_image } from "@/layers/services/image_generator/i_gen";
+import { OPERATION_STATUS } from "@/layers/services/status";
 
 const PRORROG_SCENE_ID = 'PRORROG'
 
@@ -172,14 +173,21 @@ export class Cuento extends Preview {
     }
   }
 
-  public save_story(){
-    const url = ""
+  public save_story(handler: (status: OPERATION_STATUS, message: string) => void | undefined) {
+    const url = "/api/cuento"
     const r = fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this._record)
+    })
+
+    r.then((res) => res.json()).then((data) => {
+      console.log(data.message)
+      if(handler){
+        handler(data.status, data.message)
+      }
     })
   }
 }

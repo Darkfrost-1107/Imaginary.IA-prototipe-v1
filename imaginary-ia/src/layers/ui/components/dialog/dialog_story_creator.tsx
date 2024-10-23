@@ -8,6 +8,7 @@ import { Grid_Layout } from '../../layouts/grid_layout';
 import { Panel_Layout } from '../../layouts/panel_layout';
 import { Text_Container } from '../../containers/text_container';
 import { Button_Container } from '../../containers/button_container';
+import { OPERATION_STATUS } from '@/layers/services/status';
 
 interface Dialog_Component_Props {
   close: () => void;
@@ -91,6 +92,23 @@ export const Dialog_Story_Creator: FC<Dialog_Component_Props> = ({ close, story 
               onClick={() => handleOptionSelect(option)}
             />
           ))}
+          { (currentStory.current_scene?.options.length == 0) ?
+            <Button_Container 
+              label="Guardar como plantilla"
+              onClick={() => {
+                function handler(status: OPERATION_STATUS, message: string) {
+                  if(status = OPERATION_STATUS.SUCCESS) {
+                    close()
+                  } else {
+                    if(confirm("ocurrio un error\n ¿Quiere cerrar Cuento?")){
+                      close()
+                    }
+                  }
+                }
+                story.save_story(handler);
+              }}
+            /> : null
+          }
         </div>
         </Panel_Layout>
       </Grid_Layout>
