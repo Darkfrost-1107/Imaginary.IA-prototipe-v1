@@ -1,18 +1,36 @@
 "use client"
-import {FC} from 'react'
+import { Preview } from '@/layers/core/cuento/preview'
+import {FC, useState} from 'react'
+import { Preview_Card_Container } from '../containers/preview_card_congainer'
 
 interface PageProps {
   //Props
 }
 
+const previews = [
+  new Preview({
+    id: "1",
+    titulo: "Noteworthy technology acquisitions 2021",
+    synopsis: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+    size: 3
+  })
+]
+
 export const Story_Template_Viewer : FC<PageProps> = () => {
+
+  const [cuentos, setCuentos] = useState<Preview[]>()
+
   return (
     <div>
       <div className="flex flex-wrap justify-center gap-3">
+        {previews.map((elem) => 
+          <Preview_Card_Container preview={elem} />
+        )}
         <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">
           <a href="#">
             <img className="rounded-t-lg" src="/logo.png" alt="" />
           </a>
+
           <div className="p-4">
             <a href="#">
               <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">

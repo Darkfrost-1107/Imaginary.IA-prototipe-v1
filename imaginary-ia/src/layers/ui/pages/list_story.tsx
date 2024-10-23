@@ -15,8 +15,6 @@ export const List_Story_Page: FC<PageProps> = () => {
   return (
     <div>
     <Header_Component />
-      <div className="h-1"></div>
-      <Logo_Container />
 
       <Title_Layout>
         <Title_Container

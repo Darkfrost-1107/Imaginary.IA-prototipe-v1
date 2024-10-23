@@ -5,9 +5,10 @@ interface DialogProps {
   //Props
   label: string
   children : any
+  className: string
 }
 
-export const Dialog_Component : FC<DialogProps> = ({label, children}) => {
+export const Dialog_Component : FC<DialogProps> = ({label, children, className}) => {
   const [isOpen, setOpen] = useState<boolean>(false)
 
   const Component = children
@@ -16,7 +17,7 @@ export const Dialog_Component : FC<DialogProps> = ({label, children}) => {
   }
   return (
     <>
-      <Button_Container onClick={swap} label={label} />
+      <Button_Container onClick={swap} label={label} className={className} />
       <Dialog open={isOpen} onClose={() => setOpen(false)} className="relative z-50" >
           <div className="fixed inset-0 flex w-screen items-center justify-center p-4 bg-black/40">
           <DialogPanel className="max-w-3/4 space-y-4 border bg-white p-4 rounded-2xl">
