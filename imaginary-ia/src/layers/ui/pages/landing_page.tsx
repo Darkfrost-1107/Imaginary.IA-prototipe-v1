@@ -6,7 +6,9 @@ interface PageProps {
 
 export const Landing_Page: FC<PageProps> = () => {
   return (
-    <div className="text-gray-300 container mx-auto p-8 overflow-hidden md:rounded-lg md:p-10 lg:p-12">
+    <div className="flex justify-center items-center">
+
+    <div className="text-gray-300 container lg:pt-0 p-8 overflow-hidden md:rounded-lg md:p-10 lg:p-0">
       <Header_Component />  
       <div className="h-40 md:h-20"></div>
       <div className="grid gap-8 md:grid-cols-3">
@@ -120,28 +122,28 @@ export const Landing_Page: FC<PageProps> = () => {
       </div>
 
       {/* crear div con 2 columnas de dos botones se colocara 2 enlaces */}
-      <div className="h-32 md:h-40 p-10">
+      {/* <div className="h-32 md:h-40 p-10">
         <p className="text-center font-serif text-3xl">Ayudanos a mejorar!!</p>
         <p className="text-center font-serif text-2xl">Completa las encuestas</p>
       <div className="grid gap-8 md:grid-cols-2">
         <div className="flex justify-center">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSd7WoTQ9TBfAoog0qsOTxVmS8E1qSBizMzZpLwqwfjSKzCg-g/viewform"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfKZG6K2G2arydsVz078xeqQNBmZCQ9rxrPvgBrYreJX17Jdw/viewform"
             className="flex items-center justify-center w-48 h-16 text-xl font-semibold text-white bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
-          >
+            >
             Sobre ti
           </a>
         </div>
         <div className="flex justify-center">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfKZG6K2G2arydsVz078xeqQNBmZCQ9rxrPvgBrYreJX17Jdw/viewform"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd7WoTQ9TBfAoog0qsOTxVmS8E1qSBizMzZpLwqwfjSKzCg-g/viewform"
             className="flex items-center justify-center w-48 h-16 text-xl font-semibold text-white bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
-          >
+            >
             Calificanos
           </a>
         </div>
       </div>
-      </div>
+      </div> */}
 
       <footer className="flex flex-col space-y-10 justify-center m-10">
         <nav className="flex justify-center flex-wrap gap-6 text-gray-400 font-serif">
@@ -172,6 +174,7 @@ export const Landing_Page: FC<PageProps> = () => {
         </div>
         <p className="text-center text-gray-700 font-medium">&copy; 2024 Imaginary AI. All rights reservered.</p>
     </footer>
+    </div>
     </div>
   );
 };

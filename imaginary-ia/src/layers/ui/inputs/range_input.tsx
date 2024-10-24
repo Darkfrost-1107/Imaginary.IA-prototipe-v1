@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import { Input_Props } from './types'
 import { Input_Base } from './input_base'
 import { Text_Container } from '../containers/text_container'
+import { Text_Ball_Container } from '../containers/text_ball_container'
 
 interface Range_Input_Props extends Input_Props {
   //Props
@@ -47,9 +48,7 @@ export const Range_Input: FC<Range_Input_Props> = ({ className, range, props }) 
             <Text_Container text={range.max} />
           </div>
         </div>
-        <div className="bg-blue-500 text-white rounded-full h-12 w-12 flex items-center justify-center text-lg font-semibold shadow-lg">
-          {currentValue}
-        </div>
+        <Text_Ball_Container text={currentValue + ""}/>
       </div>
     </div>
   );

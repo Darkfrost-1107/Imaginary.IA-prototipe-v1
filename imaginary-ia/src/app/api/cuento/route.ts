@@ -51,7 +51,7 @@ export async function GET(
 
   try{
     const templates = await prisma.template.findMany({
-      skip: page || 0,
+      skip: page * 3 || 0,
       take: Page_Size
     })
     return Response.json({

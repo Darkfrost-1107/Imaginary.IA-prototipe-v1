@@ -26,9 +26,6 @@ export const List_Story_Page: FC<PageProps> = () => {
           className="font-pixelify "
         />
       </Title_Layout>
-      <br />
-      <br />
-      <br />
       <Story_Template_Viewer />
     </div>
   );
